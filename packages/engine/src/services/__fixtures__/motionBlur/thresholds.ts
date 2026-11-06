@@ -8,10 +8,6 @@ export const MEASURED_RENDER_NOISE = 0;
 // Worst-tile MAE of the rewind mutation through the render (`callbacks`, 7 workers; caught 8 of 8 runs, always 97.02).
 export const MEASURED_RENDER_REWIND_MUTATION = 97.02;
 
-// Worst-tile MAE of each pinned known bug, where it was pinned. A pin passes only within half to double of it.
-export const MEASURED_LABEL_EARLY_FRESH_PAINT = 54.3;
-export const MEASURED_LABEL_EARLY_RENDER = 53.87;
-
 export const MEASURED_INSIDE_NOISE = 10.993;
 export const MEASURED_CONTENT_CUT_MUTATION = 130.129;
 export const MEASURED_CLIP_PATH_MUTATION = 124.322;
@@ -56,13 +52,9 @@ export const SWEEP_SYMPTOMS = {
   A: 47.67,
   B: 148.63,
   C: 73.02,
-  D_CAPTURE: 107.66,
-  D_FILTER: 107.66,
   E: 27.6,
   F_CAPTURE: 40.62,
-  F_FILTER: 126.54,
   H: 135.67,
-  I: 53.63,
   J: 25.79,
   K: MEASURED_ORACLE_SMALLEST_SYMPTOM,
   M: 18.31,
