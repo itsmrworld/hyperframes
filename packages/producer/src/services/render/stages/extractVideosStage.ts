@@ -51,10 +51,12 @@ import {
   resolveFinalFrameExtractionWindow,
   resolveVideoExtractionWindow,
   isHttpUrl,
+  assertPublicHttpsUrl,
   resolveProjectRelativeSrc,
   runVideoExtractionWithRetry,
   safeVideoExtractionSourceIdentity,
   videoAudioId,
+  type ShownBox,
 } from "@hyperframes/engine";
 import {
   collectVideoMetadataHints,
@@ -97,6 +99,7 @@ export interface ExtractVideosStageInput {
    */
   materializeSymlinks?: boolean;
   deferRangeExtraction?: boolean;
+  shownBoxes?: ReadonlyMap<string, ShownBox>;
   skipFrameExtractionIds?: readonly string[];
   urlByAbsentLocalPath?: ReadonlyMap<string, string>;
   onProgress?: ProgressCallback;
@@ -423,6 +426,7 @@ export async function runExtractVideosStage(
     assertNotAborted,
     materializeSymlinks,
     deferRangeExtraction,
+    shownBoxes,
     urlByAbsentLocalPath,
     skipFrameExtractionIds = [],
   } = input;
@@ -554,6 +558,7 @@ export async function runExtractVideosStage(
         maxTransientRetries: extractionPolicy.maxTransientRetries,
         collectProbeFailures: extractionPolicy.failureMode === "enforce",
         deferRangeExtraction,
+        shownBoxes,
         contentKeyedDirs: [join(compiledDir, REMOTE_MEDIA_SUBDIR)],
         urlByAbsentLocalPath,
         onProgress: ({ planned = 0, done = 0 }) => {
@@ -639,6 +644,15 @@ export function appendAutoDetectedVideoAudio(
   }
 }
 
+function isPublicHttpsUrl(url: string): boolean {
+  try {
+    assertPublicHttpsUrl(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 /**
  * The audio-only form of the extract stage: which videos carry sound takes a probe per source, not their frames.
  * Each video is moved to its extraction window first, as extraction does, so its sound lands where its picture does.
@@ -655,6 +669,7 @@ export async function appendVideoAudioFromProbe(input: {
   );
   const probed = await Promise.all(
     videos.map(async (video) => {
+      if (isHttpUrl(video.src) && !isPublicHttpsUrl(video.src)) return null;
       const path = isHttpUrl(video.src)
         ? video.src
         : resolveProjectRelativeSrc(video.src, projectDir, compiledDir);

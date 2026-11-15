@@ -52,6 +52,7 @@ export type {
   CaptureWarning,
   CaptureWarningCode,
   SubTimelineWaitMemo,
+  StaticDedupMemo,
   SubTimelineWaitOutcome,
 } from "./types.js";
 
@@ -84,6 +85,8 @@ export {
 export {
   getCgroupMemoryLimitMb,
   getSystemTotalMb,
+  hostCpuCount,
+  usableCpuCount,
   isLowMemorySystem,
   LOW_MEMORY_TOTAL_MB_THRESHOLD,
 } from "./services/systemMemory.js";
@@ -216,6 +219,7 @@ export {
   HLS_MASTER_PLAYLIST,
   HLS_VIDEO_PLAYLIST,
   HLS_AUDIO_PLAYLIST,
+  type ChromaSubsampling,
   type GpuEncoder,
   type PackageHlsOptions,
 } from "./services/chunkEncoder.js";
@@ -399,10 +403,13 @@ export {
   type KeyframeAnalysis,
 } from "./utils/ffprobe.js";
 
+export { mediaIdPathSegment } from "./utils/mediaPathSegment.js";
+
 export {
   NOT_MEDIA_PAYLOAD,
   NotMediaPayloadError,
   assertMediaPayload,
+  playlistLeavesItsFolder,
   fingerprintElementId,
   isNotMediaPayload,
 } from "./utils/notMediaPayload.js";
@@ -411,6 +418,7 @@ export {
   _setDownloadFetchForTests,
   assertPublicHttpsUrl,
   downloadToTemp,
+  fetchPublicHttpsBytes,
   fetchPublicHttpsText,
   isHttpUrl,
   safeDownloadUrlIdentity,
@@ -421,6 +429,8 @@ export {
   type PublicHttpsTextOptions,
 } from "./utils/urlDownloader.js";
 export { isBlockedNetworkHost } from "./utils/networkPolicy.js";
+export { onRenderRefusal } from "./services/publicNetwork/captureProxy.js";
+export type { RefusedHostClass } from "./services/publicNetwork/publicNetwork.js";
 export {
   runFfmpeg,
   formatFfmpegError,
@@ -506,7 +516,9 @@ export {
   queryVideoElementBounds,
   queryElementStacking,
   measureVideoShownBoxes,
+  measureVideoShownBoxRanges,
   type ShownBox,
+  type ShownBoxRange,
   type VideoElementBounds,
   type ElementStackingInfo,
 } from "./services/videoFrameInjector.js";
@@ -553,3 +565,14 @@ export {
   pipeLaunchClosedOnMac,
   sandboxDeniedRemediation,
 } from "./services/sandboxLaunch.js";
+export {
+  chromeSandboxArgs,
+  chromeSandboxEnabled,
+  launchWithChromeSandboxFallback,
+  type ChromeSandboxHost,
+} from "./services/chromeSandbox.js";
+export {
+  VariablesInvalidError,
+  type VariablesIssue,
+  type VariablesInvalidMetadata,
+} from "./services/variablesCheck.js";

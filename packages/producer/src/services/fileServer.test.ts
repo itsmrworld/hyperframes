@@ -62,12 +62,14 @@ describe("closeFileServerSafely", () => {
 async function withFileServer(
   projectDir: string,
   run: (server: Awaited<ReturnType<typeof createFileServer>>) => Promise<void>,
+  allowOutsideProjectAssets?: boolean,
 ): Promise<void> {
   const server = await createFileServer({
     projectDir,
     preHeadScripts: [],
     headScripts: [],
     bodyScripts: [],
+    allowOutsideProjectAssets,
   });
   try {
     await run(server);
@@ -492,7 +494,7 @@ describe("createFileServer", () => {
     );
   });
 
-  it("serves asset files through project-root symlinked directories", async () => {
+  it("serves asset files through project-root symlinked directories for local renders", async () => {
     const workspaceDir = mkdtempSync(join(tmpdir(), "hf-file-server-symlink-assets-"));
     const adsDir = join(workspaceDir, "Ads");
     const projectDir = join(adsDir, "annual-upsell-2");
@@ -508,11 +510,18 @@ describe("createFileServer", () => {
       );
       symlinkSync("../shared", join(projectDir, "shared"));
 
+      await withFileServer(
+        projectDir,
+        async (server) => {
+          await expectTextResponse(`${server.url}/shared/brand.css`, {
+            contentType: "text/css",
+            bodyIncludes: ".aisplus-glass",
+          });
+        },
+        true,
+      );
       await withFileServer(projectDir, async (server) => {
-        await expectTextResponse(`${server.url}/shared/brand.css`, {
-          contentType: "text/css",
-          bodyIncludes: ".aisplus-glass",
-        });
+        expect((await fetch(`${server.url}/shared/brand.css`)).status).toBe(404);
       });
     } finally {
       rmSync(workspaceDir, { recursive: true, force: true });
@@ -1123,4 +1132,34 @@ describe("createFileServer colour-tagged PNGs", () => {
       rmSync(projectDir, { recursive: true, force: true });
     }
   });
+});
+
+describe("createFileServer private project files", () => {
+  it.each(["/.env", "/.ENV.local", "/.env.production", "/.git/config", "/%2egit/HEAD", "/.envrc"])(
+    "answers %s with 404 and keeps ordinary assets",
+    async (requestPath) => {
+      const projectDir = mkdtempSync(join(tmpdir(), "hf-fs-private-"));
+      try {
+        writeEmptyIndex(projectDir);
+        mkdirSync(join(projectDir, ".git"));
+        for (const name of [".env", ".ENV.local", ".env.production", ".envrc"]) {
+          writeFileSync(join(projectDir, name), "SECRET=1");
+        }
+        writeFileSync(join(projectDir, ".git", "config"), "SECRET=1");
+        writeFileSync(join(projectDir, ".git", "HEAD"), "SECRET=1");
+        writeFileSync(join(projectDir, "asset.txt"), "ok");
+        symlinkSync(join(projectDir, ".env"), join(projectDir, "linked.txt"));
+        await withFileServer(projectDir, async (server) => {
+          const response = await fetch(`${server.url}${requestPath}`);
+          expect(response.status).toBe(404);
+          expect(await response.text()).not.toContain("SECRET");
+          const linked = await fetch(`${server.url}/linked.txt`);
+          expect(linked.status).toBe(404);
+          expect((await fetch(`${server.url}/asset.txt`)).status).toBe(200);
+        });
+      } finally {
+        rmSync(projectDir, { recursive: true, force: true });
+      }
+    },
+  );
 });
