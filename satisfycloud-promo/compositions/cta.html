@@ -1,0 +1,70 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; color: #0B1220; --lw: 880px; }
+    #cta-stage { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #cta-photo { position: absolute; left: 140px; top: 80px; width: 460px; height: 780px; border-radius: 36px; overflow: hidden; opacity: 0;
+      box-shadow: 0 50px 120px rgba(11,60,200,.35), 0 0 0 1px rgba(11,100,248,.2); }
+    #cta-photo img { position: absolute; left: -150px; top: -520px; width: 700px; height: 1416px; }
+    #cta-bloom { position: absolute; left: 1010px; top: 480px; width: 1400px; height: 1400px; margin: -700px 0 0 -700px; border-radius: 50%; background: radial-gradient(closest-side, rgba(11,100,248,.22), rgba(11,100,248,0) 70%); opacity: 0; }
+    #cta-col { position: absolute; left: 700px; right: 120px; top: 0; bottom: 0; }
+    #cta-lock { position: absolute; left: 0; top: 160px; width: var(--lw); height: calc(var(--lw) * .1554); }
+    #cta-lock img { position: absolute; top: 0; height: 100%; display: block; }
+    #cta-mark { left: 0; width: calc(var(--lw) * .2545); } #cta-word { left: calc(var(--lw) * .2746); width: calc(var(--lw) * .7254); clip-path: inset(0 100% 0 0); }
+    #cta-h { position: absolute; left: 0; top: 400px; font-weight: 700; font-size: 128px; line-height: .98; letter-spacing: -.04em; color: #0B1220; }
+    #cta-h .w { display: inline-block; opacity: 0; }
+    #cta-h .b { color: #0B64F8; }
+    #cta-url { position: absolute; left: 0; top: 740px; height: 118px; width: 760px; border-radius: 60px; display: flex; align-items: center; padding: 0 20px 0 44px; gap: 16px; opacity: 0;
+      background: linear-gradient(150deg, rgba(255,255,255,.95), rgba(235,242,255,.8)); border: 1px solid rgba(11,100,248,.25); box-shadow: 0 30px 80px rgba(11,100,248,.3), inset 0 2px 0 #fff; font: 500 52px "Outfit"; letter-spacing: -.01em; }
+    #cta-url em { font-style: normal; color: #0B64F8; font-weight: 600; }
+    #cta-go { margin-left: auto; height: 84px; padding: 0 40px; border-radius: 44px; background: #0B64F8; color: #fff; display: flex; align-items: center; font: 600 32px "Outfit"; box-shadow: 0 0 40px rgba(11,100,248,.55); }
+    #cta-cur { position: absolute; left: 0; top: 0; width: 96px; height: 96px; opacity: 0; filter: drop-shadow(0 12px 18px rgba(0,30,120,.4)); }
+    #cta-flash { position: absolute; left: 0; top: 740px; width: 760px; height: 118px; border-radius: 60px; box-shadow: 0 0 0 0 rgba(11,100,248,.6); opacity: 0; }
+    @container (max-aspect-ratio: 1.2) {
+      #root { --lw: 800px; }
+      #cta-photo { left: 70px; top: 70px; width: 940px; height: 300px; border-radius: 30px; }
+      #cta-photo img { left: -200px; top: -1130px; width: 1000px; height: 2022px; }
+      #cta-col { left: 70px; right: 70px; } #cta-lock { top: 430px; } #cta-h { top: 580px; font-size: 104px; } #cta-url { top: 880px; width: 940px; height: 104px; font-size: 44px; } #cta-flash { top: 880px; width: 940px; height: 104px; }
+    }
+  </style>
+  <div id="root" data-composition-id="cta" data-width="1920" data-height="1080">
+    <div id="cta-stage">
+      <div id="cta-bloom"></div>
+      <div id="cta-photo"><img src="assets/img/portrait.jpg" alt="" /></div>
+      <div id="cta-col">
+        <div id="cta-lock"><img id="cta-mark" src="assets/logo/mark_blue.png" alt="SatisfyCloud" /><img id="cta-word" src="assets/logo/word_dark.png" alt="" /></div>
+        <div id="cta-h"><span class="w">Build</span> <span class="w">without</span><br><span class="w b">limits.</span></div>
+        <div id="cta-flash"></div>
+        <div id="cta-url"><span id="cta-txt"></span><span id="cta-go">Visit now</span></div>
+      </div>
+      <svg id="cta-cur" viewBox="0 0 32 32"><path d="M5 2 L5 25 L11 19.5 L15 28.5 L19 26.8 L15 18 L23 18 Z" fill="#fff" stroke="#0B1220" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var $ = function (s) { return document.querySelector(s); };
+      var col = $("#cta-col"), url = $("#cta-url"), go = $("#cta-go");
+      // local clock: scene starts at abs 64.5. Because (64.60) 0.1 · SatisfyCloud 67.71 (3.21) · Build without limits 68.92 (4.42) · satisfycloud.com 70.48 (5.98)
+      tl.fromTo("#cta-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, 0);
+      tl.fromTo("#cta-bloom", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 2.0, ease: "power3.out" }, 0.4);
+      tl.fromTo("#cta-photo", { opacity: 0, y: 60, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: "power4.out" }, 0.5);
+      tl.fromTo("#cta-photo img", { scale: 1.12 }, { scale: 1.0, duration: 7.4, ease: "none" }, 0.5);
+      // brand arrives on its name (67.71)
+      tl.fromTo("#cta-mark", { opacity: 0, scale: 0.6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, 3.21);
+      tl.fromTo("#cta-word", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power3.inOut" }, 3.4);
+      // "Build without limits." (68.92 / 69.6 / 70.2) word by word
+      tl.fromTo("#cta-h .w", { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out", stagger: 0.4 }, 4.42);
+      // the address types itself, cursor clicks (70.48 / 72.11)
+      tl.fromTo("#cta-url", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 5.7);
+      var o = { n: 0 }, txt = "satisfycloud.com"; tl.fromTo(o, { n: 0 }, { n: txt.length, immediateRender: false, duration: 1.1, ease: "none", onUpdate: function () { var s = txt.slice(0, Math.round(o.n)); $("#cta-txt").innerHTML = s.replace(/\.com$/, "<em>.com</em>"); } }, 5.98);
+      var gx = col.offsetLeft + url.offsetLeft + go.offsetLeft + go.offsetWidth * 0.5, gy = col.offsetTop + url.offsetTop + go.offsetTop + go.offsetHeight * 0.45;
+      tl.fromTo("#cta-cur", { x: 1900, y: 1000, opacity: 0, scale: 1 }, { x: gx - 10, y: gy - 6, opacity: 1, duration: 0.95, ease: "power3.out" }, 6.35);
+      tl.to("#cta-cur", { scale: 0.86, duration: 0.07, ease: "power2.in" }, 7.32);
+      tl.to("#cta-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 7.39);
+      tl.to("#cta-go", { scale: 0.94, duration: 0.07, ease: "power2.in" }, 7.32);
+      tl.to("#cta-go", { scale: 1, duration: 0.2, ease: "power2.out" }, 7.39);
+      tl.fromTo("#cta-flash", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.12, duration: 0.7, ease: "power2.out" }, 7.32);
+      window.__timelines["cta"] = tl;
+    })();
+  </script>
+</template>

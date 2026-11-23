@@ -1,0 +1,1142 @@
+{
+  "duration": 72.28,
+  "words": [
+    {
+      "text": "Three",
+      "start": 0.0,
+      "end": 0.555
+    },
+    {
+      "text": "a.m.",
+      "start": 0.555,
+      "end": 1.11
+    },
+    {
+      "text": "The",
+      "start": 1.8,
+      "end": 2.03
+    },
+    {
+      "text": "city's",
+      "start": 2.03,
+      "end": 2.49
+    },
+    {
+      "text": "asleep.",
+      "start": 2.49,
+      "end": 2.95
+    },
+    {
+      "text": "But",
+      "start": 3.46,
+      "end": 3.635
+    },
+    {
+      "text": "you're",
+      "start": 3.635,
+      "end": 3.985
+    },
+    {
+      "text": "not.",
+      "start": 3.985,
+      "end": 4.16
+    },
+    {
+      "text": "You've",
+      "start": 4.59,
+      "end": 4.92
+    },
+    {
+      "text": "got",
+      "start": 4.92,
+      "end": 5.085
+    },
+    {
+      "text": "an",
+      "start": 5.085,
+      "end": 5.25
+    },
+    {
+      "text": "idea.",
+      "start": 5.25,
+      "end": 5.58
+    },
+    {
+      "text": "The",
+      "start": 5.86,
+      "end": 6.086
+    },
+    {
+      "text": "kind",
+      "start": 6.086,
+      "end": 6.311
+    },
+    {
+      "text": "that",
+      "start": 6.311,
+      "end": 6.537
+    },
+    {
+      "text": "won't",
+      "start": 6.537,
+      "end": 6.763
+    },
+    {
+      "text": "let",
+      "start": 6.763,
+      "end": 6.989
+    },
+    {
+      "text": "you",
+      "start": 6.989,
+      "end": 7.214
+    },
+    {
+      "text": "rest.",
+      "start": 7.214,
+      "end": 7.44
+    },
+    {
+      "text": "And",
+      "start": 8.33,
+      "end": 8.507
+    },
+    {
+      "text": "you",
+      "start": 8.507,
+      "end": 8.683
+    },
+    {
+      "text": "know,",
+      "start": 8.683,
+      "end": 8.86
+    },
+    {
+      "text": "if",
+      "start": 9.09,
+      "end": 9.367
+    },
+    {
+      "text": "it",
+      "start": 9.367,
+      "end": 9.643
+    },
+    {
+      "text": "works...",
+      "start": 9.643,
+      "end": 9.92
+    },
+    {
+      "text": "it",
+      "start": 10.2,
+      "end": 10.387
+    },
+    {
+      "text": "won't",
+      "start": 10.387,
+      "end": 10.575
+    },
+    {
+      "text": "just",
+      "start": 10.575,
+      "end": 10.762
+    },
+    {
+      "text": "change",
+      "start": 10.762,
+      "end": 11.137
+    },
+    {
+      "text": "your",
+      "start": 11.137,
+      "end": 11.325
+    },
+    {
+      "text": "life.",
+      "start": 11.325,
+      "end": 11.7
+    },
+    {
+      "text": "It",
+      "start": 12.15,
+      "end": 12.394
+    },
+    {
+      "text": "could",
+      "start": 12.394,
+      "end": 12.639
+    },
+    {
+      "text": "reach",
+      "start": 12.639,
+      "end": 12.883
+    },
+    {
+      "text": "the",
+      "start": 12.883,
+      "end": 13.127
+    },
+    {
+      "text": "whole",
+      "start": 13.127,
+      "end": 13.616
+    },
+    {
+      "text": "world.",
+      "start": 13.616,
+      "end": 13.86
+    },
+    {
+      "text": "But",
+      "start": 14.39,
+      "end": 14.62
+    },
+    {
+      "text": "the",
+      "start": 14.62,
+      "end": 14.85
+    },
+    {
+      "text": "world",
+      "start": 14.85,
+      "end": 15.08
+    },
+    {
+      "text": "doesn't",
+      "start": 15.08,
+      "end": 15.31
+    },
+    {
+      "text": "wait.",
+      "start": 15.31,
+      "end": 15.54
+    },
+    {
+      "text": "A",
+      "start": 15.72,
+      "end": 15.928
+    },
+    {
+      "text": "server",
+      "start": 15.928,
+      "end": 16.344
+    },
+    {
+      "text": "that",
+      "start": 16.344,
+      "end": 16.552
+    },
+    {
+      "text": "crawls.",
+      "start": 16.552,
+      "end": 16.889
+    },
+    {
+      "text": "A",
+      "start": 17.009,
+      "end": 17.217
+    },
+    {
+      "text": "site",
+      "start": 17.217,
+      "end": 17.633
+    },
+    {
+      "text": "that",
+      "start": 17.633,
+      "end": 17.841
+    },
+    {
+      "text": "crashes",
+      "start": 17.841,
+      "end": 18.256
+    },
+    {
+      "text": "on",
+      "start": 18.256,
+      "end": 18.464
+    },
+    {
+      "text": "launch",
+      "start": 18.464,
+      "end": 18.672
+    },
+    {
+      "text": "day.",
+      "start": 18.672,
+      "end": 18.88
+    },
+    {
+      "text": "Dashboards",
+      "start": 19.07,
+      "end": 19.461
+    },
+    {
+      "text": "you",
+      "start": 19.461,
+      "end": 19.656
+    },
+    {
+      "text": "need",
+      "start": 19.656,
+      "end": 19.852
+    },
+    {
+      "text": "a",
+      "start": 19.852,
+      "end": 20.047
+    },
+    {
+      "text": "manual",
+      "start": 20.047,
+      "end": 20.438
+    },
+    {
+      "text": "to",
+      "start": 20.438,
+      "end": 20.634
+    },
+    {
+      "text": "understand.",
+      "start": 20.634,
+      "end": 21.22
+    },
+    {
+      "text": "And",
+      "start": 21.66,
+      "end": 21.803
+    },
+    {
+      "text": "somewhere",
+      "start": 21.803,
+      "end": 22.377
+    },
+    {
+      "text": "in",
+      "start": 22.377,
+      "end": 22.52
+    },
+    {
+      "text": "all",
+      "start": 22.52,
+      "end": 22.663
+    },
+    {
+      "text": "of",
+      "start": 22.663,
+      "end": 22.807
+    },
+    {
+      "text": "that...",
+      "start": 22.807,
+      "end": 22.95
+    },
+    {
+      "text": "the",
+      "start": 23.34,
+      "end": 23.566
+    },
+    {
+      "text": "dream",
+      "start": 23.566,
+      "end": 23.792
+    },
+    {
+      "text": "gets",
+      "start": 23.792,
+      "end": 24.018
+    },
+    {
+      "text": "heavy.",
+      "start": 24.018,
+      "end": 24.47
+    },
+    {
+      "text": "So",
+      "start": 24.85,
+      "end": 25.019
+    },
+    {
+      "text": "we",
+      "start": 25.019,
+      "end": 25.188
+    },
+    {
+      "text": "built",
+      "start": 25.188,
+      "end": 25.357
+    },
+    {
+      "text": "something",
+      "start": 25.357,
+      "end": 25.863
+    },
+    {
+      "text": "different.",
+      "start": 25.863,
+      "end": 26.37
+    },
+    {
+      "text": "This",
+      "start": 26.66,
+      "end": 26.928
+    },
+    {
+      "text": "is",
+      "start": 26.928,
+      "end": 27.197
+    },
+    {
+      "text": "SatisfyCloud.",
+      "start": 27.197,
+      "end": 28.27
+    },
+    {
+      "text": "Start",
+      "start": 28.59,
+      "end": 28.756
+    },
+    {
+      "text": "with",
+      "start": 28.756,
+      "end": 28.922
+    },
+    {
+      "text": "a",
+      "start": 28.922,
+      "end": 29.088
+    },
+    {
+      "text": "name.",
+      "start": 29.088,
+      "end": 29.42
+    },
+    {
+      "text": "Your",
+      "start": 29.61,
+      "end": 29.827
+    },
+    {
+      "text": "domain,",
+      "start": 29.827,
+      "end": 30.26
+    },
+    {
+      "text": "live",
+      "start": 30.44,
+      "end": 30.856
+    },
+    {
+      "text": "in",
+      "start": 30.856,
+      "end": 31.064
+    },
+    {
+      "text": "seconds.",
+      "start": 31.064,
+      "end": 31.48
+    },
+    {
+      "text": "Give",
+      "start": 31.72,
+      "end": 32.15
+    },
+    {
+      "text": "it",
+      "start": 32.15,
+      "end": 32.366
+    },
+    {
+      "text": "a",
+      "start": 32.366,
+      "end": 32.581
+    },
+    {
+      "text": "home,",
+      "start": 32.581,
+      "end": 33.15
+    },
+    {
+      "text": "on",
+      "start": 33.27,
+      "end": 33.485
+    },
+    {
+      "text": "blazing-fast",
+      "start": 33.485,
+      "end": 34.13
+    },
+    {
+      "text": "NVMe,",
+      "start": 34.13,
+      "end": 34.484
+    },
+    {
+      "text": "with",
+      "start": 34.604,
+      "end": 34.819
+    },
+    {
+      "text": "LiteSpeed",
+      "start": 34.819,
+      "end": 35.465
+    },
+    {
+      "text": "speed.",
+      "start": 35.465,
+      "end": 35.68
+    },
+    {
+      "text": "Grow",
+      "start": 35.94,
+      "end": 36.172
+    },
+    {
+      "text": "into",
+      "start": 36.172,
+      "end": 36.636
+    },
+    {
+      "text": "Pro,",
+      "start": 36.636,
+      "end": 37.026
+    },
+    {
+      "text": "with",
+      "start": 37.146,
+      "end": 37.378
+    },
+    {
+      "text": "full",
+      "start": 37.378,
+      "end": 37.61
+    },
+    {
+      "text": "terminal",
+      "start": 37.61,
+      "end": 38.306
+    },
+    {
+      "text": "and",
+      "start": 38.306,
+      "end": 38.538
+    },
+    {
+      "text": "SSH.",
+      "start": 38.538,
+      "end": 38.77
+    },
+    {
+      "text": "Launch",
+      "start": 38.98,
+      "end": 39.169
+    },
+    {
+      "text": "your",
+      "start": 39.169,
+      "end": 39.359
+    },
+    {
+      "text": "own",
+      "start": 39.359,
+      "end": 39.548
+    },
+    {
+      "text": "hosting",
+      "start": 39.548,
+      "end": 39.927
+    },
+    {
+      "text": "brand,",
+      "start": 39.927,
+      "end": 40.224
+    },
+    {
+      "text": "completely",
+      "start": 40.344,
+      "end": 41.102
+    },
+    {
+      "text": "white-label.",
+      "start": 41.102,
+      "end": 41.86
+    },
+    {
+      "text": "Need",
+      "start": 42.09,
+      "end": 42.293
+    },
+    {
+      "text": "raw",
+      "start": 42.293,
+      "end": 42.495
+    },
+    {
+      "text": "power?",
+      "start": 42.495,
+      "end": 42.9
+    },
+    {
+      "text": "Full-root",
+      "start": 43.15,
+      "end": 43.62
+    },
+    {
+      "text": "VPS",
+      "start": 43.62,
+      "end": 43.855
+    },
+    {
+      "text": "on",
+      "start": 43.855,
+      "end": 44.09
+    },
+    {
+      "text": "AMD",
+      "start": 44.09,
+      "end": 44.324
+    },
+    {
+      "text": "EPYC.",
+      "start": 44.324,
+      "end": 44.956
+    },
+    {
+      "text": "Bare-metal",
+      "start": 45.076,
+      "end": 46.016
+    },
+    {
+      "text": "servers",
+      "start": 46.016,
+      "end": 46.486
+    },
+    {
+      "text": "across",
+      "start": 46.486,
+      "end": 46.955
+    },
+    {
+      "text": "eight",
+      "start": 46.955,
+      "end": 47.19
+    },
+    {
+      "text": "countries.",
+      "start": 47.19,
+      "end": 47.66
+    },
+    {
+      "text": "And",
+      "start": 47.87,
+      "end": 48.057
+    },
+    {
+      "text": "for",
+      "start": 48.057,
+      "end": 48.245
+    },
+    {
+      "text": "gamers?",
+      "start": 48.245,
+      "end": 48.62
+    },
+    {
+      "text": "Ultra-low",
+      "start": 48.79,
+      "end": 49.439
+    },
+    {
+      "text": "latency.",
+      "start": 49.439,
+      "end": 50.229
+    },
+    {
+      "text": "Anti-DDoS",
+      "start": 50.349,
+      "end": 50.998
+    },
+    {
+      "text": "armor.",
+      "start": 50.998,
+      "end": 51.571
+    },
+    {
+      "text": "Deployed",
+      "start": 51.691,
+      "end": 52.124
+    },
+    {
+      "text": "in",
+      "start": 52.124,
+      "end": 52.341
+    },
+    {
+      "text": "an",
+      "start": 52.341,
+      "end": 52.557
+    },
+    {
+      "text": "instant.",
+      "start": 52.557,
+      "end": 52.99
+    },
+    {
+      "text": "Your",
+      "start": 53.22,
+      "end": 53.409
+    },
+    {
+      "text": "email,",
+      "start": 53.409,
+      "end": 53.894
+    },
+    {
+      "text": "on",
+      "start": 54.014,
+      "end": 54.203
+    },
+    {
+      "text": "your",
+      "start": 54.203,
+      "end": 54.392
+    },
+    {
+      "text": "own",
+      "start": 54.392,
+      "end": 54.581
+    },
+    {
+      "text": "domain.",
+      "start": 54.581,
+      "end": 55.066
+    },
+    {
+      "text": "Scaling",
+      "start": 55.186,
+      "end": 55.564
+    },
+    {
+      "text": "that's",
+      "start": 55.564,
+      "end": 55.753
+    },
+    {
+      "text": "elastic,",
+      "start": 55.753,
+      "end": 56.427
+    },
+    {
+      "text": "exactly",
+      "start": 56.547,
+      "end": 57.114
+    },
+    {
+      "text": "when",
+      "start": 57.114,
+      "end": 57.303
+    },
+    {
+      "text": "you",
+      "start": 57.303,
+      "end": 57.492
+    },
+    {
+      "text": "need",
+      "start": 57.492,
+      "end": 57.681
+    },
+    {
+      "text": "it.",
+      "start": 57.681,
+      "end": 57.87
+    },
+    {
+      "text": "Fintech.",
+      "start": 58.18,
+      "end": 58.65
+    },
+    {
+      "text": "Commerce.",
+      "start": 58.82,
+      "end": 59.583
+    },
+    {
+      "text": "SaaS.",
+      "start": 59.703,
+      "end": 60.046
+    },
+    {
+      "text": "Entire",
+      "start": 60.166,
+      "end": 60.796
+    },
+    {
+      "text": "worlds,",
+      "start": 60.796,
+      "end": 61.139
+    },
+    {
+      "text": "played",
+      "start": 61.259,
+      "end": 61.469
+    },
+    {
+      "text": "together.",
+      "start": 61.469,
+      "end": 62.1
+    },
+    {
+      "text": "All",
+      "start": 62.38,
+      "end": 62.537
+    },
+    {
+      "text": "of",
+      "start": 62.537,
+      "end": 62.693
+    },
+    {
+      "text": "it...",
+      "start": 62.693,
+      "end": 62.85
+    },
+    {
+      "text": "running",
+      "start": 63.02,
+      "end": 63.473
+    },
+    {
+      "text": "without",
+      "start": 63.473,
+      "end": 63.927
+    },
+    {
+      "text": "limits.",
+      "start": 63.927,
+      "end": 64.38
+    },
+    {
+      "text": "Because",
+      "start": 64.6,
+      "end": 65.164
+    },
+    {
+      "text": "great",
+      "start": 65.164,
+      "end": 65.352
+    },
+    {
+      "text": "ideas",
+      "start": 65.352,
+      "end": 65.728
+    },
+    {
+      "text": "shouldn't",
+      "start": 65.728,
+      "end": 65.916
+    },
+    {
+      "text": "wait",
+      "start": 65.916,
+      "end": 66.104
+    },
+    {
+      "text": "for",
+      "start": 66.104,
+      "end": 66.292
+    },
+    {
+      "text": "their",
+      "start": 66.292,
+      "end": 66.48
+    },
+    {
+      "text": "infrastructure.",
+      "start": 66.48,
+      "end": 67.42
+    },
+    {
+      "text": "SatisfyCloud.",
+      "start": 67.71,
+      "end": 68.71
+    },
+    {
+      "text": "Build",
+      "start": 68.92,
+      "end": 69.188
+    },
+    {
+      "text": "without",
+      "start": 69.188,
+      "end": 69.724
+    },
+    {
+      "text": "limits.",
+      "start": 69.724,
+      "end": 70.26
+    },
+    {
+      "text": "satisfycloud",
+      "start": 70.48,
+      "end": 71.567
+    },
+    {
+      "text": "dot",
+      "start": 71.567,
+      "end": 71.838
+    },
+    {
+      "text": "com.",
+      "start": 71.838,
+      "end": 72.11
+    }
+  ],
+  "lines": [
+    {
+      "text": "Three a.m.",
+      "start": 0.0,
+      "end": 1.11,
+      "first": 0,
+      "last": 1
+    },
+    {
+      "text": "The city's asleep.",
+      "start": 1.8,
+      "end": 2.95,
+      "first": 2,
+      "last": 4
+    },
+    {
+      "text": "But you're not.",
+      "start": 3.46,
+      "end": 4.16,
+      "first": 5,
+      "last": 7
+    },
+    {
+      "text": "You've got an idea.",
+      "start": 4.59,
+      "end": 5.58,
+      "first": 8,
+      "last": 11
+    },
+    {
+      "text": "The kind that won't let you rest.",
+      "start": 5.86,
+      "end": 7.44,
+      "first": 12,
+      "last": 18
+    },
+    {
+      "text": "And you know,",
+      "start": 8.33,
+      "end": 8.86,
+      "first": 19,
+      "last": 21
+    },
+    {
+      "text": "if it works...",
+      "start": 9.09,
+      "end": 9.92,
+      "first": 22,
+      "last": 24
+    },
+    {
+      "text": "it won't just change your life.",
+      "start": 10.2,
+      "end": 11.7,
+      "first": 25,
+      "last": 30
+    },
+    {
+      "text": "It could reach the whole world.",
+      "start": 12.15,
+      "end": 13.86,
+      "first": 31,
+      "last": 36
+    },
+    {
+      "text": "But the world doesn't wait.",
+      "start": 14.39,
+      "end": 15.54,
+      "first": 37,
+      "last": 41
+    },
+    {
+      "text": "A server that crawls. A site that crashes on launch day.",
+      "start": 15.72,
+      "end": 18.88,
+      "first": 42,
+      "last": 52
+    },
+    {
+      "text": "Dashboards you need a manual to understand.",
+      "start": 19.07,
+      "end": 21.22,
+      "first": 53,
+      "last": 59
+    },
+    {
+      "text": "And somewhere in all of that...",
+      "start": 21.66,
+      "end": 22.95,
+      "first": 60,
+      "last": 65
+    },
+    {
+      "text": "the dream gets heavy.",
+      "start": 23.34,
+      "end": 24.47,
+      "first": 66,
+      "last": 69
+    },
+    {
+      "text": "So we built something different.",
+      "start": 24.85,
+      "end": 26.37,
+      "first": 70,
+      "last": 74
+    },
+    {
+      "text": "This is SatisfyCloud.",
+      "start": 26.66,
+      "end": 28.27,
+      "first": 75,
+      "last": 77
+    },
+    {
+      "text": "Start with a name.",
+      "start": 28.59,
+      "end": 29.42,
+      "first": 78,
+      "last": 81
+    },
+    {
+      "text": "Your domain,",
+      "start": 29.61,
+      "end": 30.26,
+      "first": 82,
+      "last": 83
+    },
+    {
+      "text": "live in seconds.",
+      "start": 30.44,
+      "end": 31.48,
+      "first": 84,
+      "last": 86
+    },
+    {
+      "text": "Give it a home, on blazing-fast NVMe, with LiteSpeed speed.",
+      "start": 31.72,
+      "end": 35.68,
+      "first": 87,
+      "last": 96
+    },
+    {
+      "text": "Grow into Pro, with full terminal and SSH.",
+      "start": 35.94,
+      "end": 38.77,
+      "first": 97,
+      "last": 104
+    },
+    {
+      "text": "Launch your own hosting brand, completely white-label.",
+      "start": 38.98,
+      "end": 41.86,
+      "first": 105,
+      "last": 111
+    },
+    {
+      "text": "Need raw power?",
+      "start": 42.09,
+      "end": 42.9,
+      "first": 112,
+      "last": 114
+    },
+    {
+      "text": "Full-root VPS on AMD EPYC. Bare-metal servers across eight countries.",
+      "start": 43.15,
+      "end": 47.66,
+      "first": 115,
+      "last": 124
+    },
+    {
+      "text": "And for gamers?",
+      "start": 47.87,
+      "end": 48.62,
+      "first": 125,
+      "last": 127
+    },
+    {
+      "text": "Ultra-low latency. Anti-DDoS armor. Deployed in an instant.",
+      "start": 48.79,
+      "end": 52.99,
+      "first": 128,
+      "last": 135
+    },
+    {
+      "text": "Your email, on your own domain. Scaling that's elastic, exactly when you need it.",
+      "start": 53.22,
+      "end": 57.87,
+      "first": 136,
+      "last": 149
+    },
+    {
+      "text": "Fintech.",
+      "start": 58.18,
+      "end": 58.65,
+      "first": 150,
+      "last": 150
+    },
+    {
+      "text": "Commerce. SaaS. Entire worlds, played together.",
+      "start": 58.82,
+      "end": 62.1,
+      "first": 151,
+      "last": 156
+    },
+    {
+      "text": "All of it...",
+      "start": 62.38,
+      "end": 62.85,
+      "first": 157,
+      "last": 159
+    },
+    {
+      "text": "running without limits.",
+      "start": 63.02,
+      "end": 64.38,
+      "first": 160,
+      "last": 162
+    },
+    {
+      "text": "Because great ideas shouldn't wait for their infrastructure.",
+      "start": 64.6,
+      "end": 67.42,
+      "first": 163,
+      "last": 170
+    },
+    {
+      "text": "SatisfyCloud.",
+      "start": 67.71,
+      "end": 68.71,
+      "first": 171,
+      "last": 171
+    },
+    {
+      "text": "Build without limits.",
+      "start": 68.92,
+      "end": 70.26,
+      "first": 172,
+      "last": 174
+    },
+    {
+      "text": "satisfycloud dot com.",
+      "start": 70.48,
+      "end": 72.11,
+      "first": 175,
+      "last": 177
+    }
+  ]
+}

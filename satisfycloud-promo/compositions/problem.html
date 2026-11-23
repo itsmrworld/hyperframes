@@ -1,0 +1,74 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #dfe5f2; }
+    #pr-stage { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    .pr-card { position: absolute; border-radius: 26px; padding: 30px 34px;
+      background: linear-gradient(150deg, rgba(255,255,255,.10), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.22), 0 40px 90px rgba(0,0,0,.5); backdrop-filter: blur(22px) saturate(.6); }
+    .pr-k { font: 500 25px/1 "JetBrains Mono", monospace; letter-spacing: .16em; color: rgba(225,232,248,.85); text-transform: uppercase; }
+    .pr-v { font: 300 92px/1 "Outfit", sans-serif; letter-spacing: -.03em; margin-top: 18px; color: #f1f4fb; }
+    .pr-v small { font-size: 36px; opacity: .6; margin-left: 8px; }
+    .pr-bar { height: 10px; border-radius: 6px; background: rgba(255,255,255,.1); margin-top: 26px; overflow: hidden; }
+    .pr-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #8896b4, #c3cde3); border-radius: 6px; }
+    #pr-a { left: 160px; top: 190px; width: 520px; height: 300px; }
+    #pr-b { left: 690px; top: 120px; width: 560px; height: 330px; }
+    #pr-b .pr-v { color: #f2b27a; }
+    #pr-c { left: 1130px; top: 430px; width: 600px; height: 380px; }
+    #pr-d { left: 250px; top: 560px; width: 560px; height: 290px; }
+    .pr-toggles { display: grid; grid-template-columns: repeat(8, 1fr); gap: 10px; margin-top: 22px; }
+    .pr-toggles i { height: 26px; border-radius: 14px; background: rgba(255,255,255,.12); position: relative; }
+    .pr-toggles i::after { content: ""; position: absolute; left: 4px; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: rgba(255,255,255,.55); }
+    .pr-toggles i.on::after { left: auto; right: 4px; background: #9fb0d6; }
+    .pr-pdf { font: 500 34px/1.2 "Outfit", sans-serif; margin-top: 16px; }
+    .pr-pdf span { display: block; font: 400 20px "Inter"; opacity: .55; margin-top: 8px; }
+    .pr-err { font: 500 26px/1.35 "JetBrains Mono", monospace; margin-top: 18px; color: #f2b27a; }
+    .pr-shard { position: absolute; width: 150px; height: 90px; border-radius: 14px; background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.14); }
+    @container (max-aspect-ratio: 1.2) {
+      #pr-a { left: 60px; top: 150px; width: 520px; height: 250px; }
+      #pr-b { left: 480px; top: 90px; width: 520px; height: 280px; }
+      #pr-c { left: 380px; top: 400px; width: 620px; height: 330px; }
+      #pr-d { left: 70px; top: 520px; width: 520px; height: 250px; }
+      .pr-v { font-size: 74px; }
+    }
+  </style>
+  <div id="root" data-composition-id="problem" data-width="1920" data-height="1080">
+    <div id="pr-stage">
+      <div class="pr-card" id="pr-a"><div class="pr-k">Response time</div><div class="pr-v"><span id="pr-ms">0.4</span><small>s</small></div><div class="pr-bar"><i id="pr-bar"></i></div></div>
+      <div class="pr-card" id="pr-b"><div class="pr-k">Launch day</div><div class="pr-v" id="pr-502">200 OK</div><div class="pr-err" id="pr-errmsg">traffic ▲ ▲ ▲</div></div>
+      <div class="pr-card" id="pr-c"><div class="pr-k">Control panel</div><div class="pr-pdf">Manual.pdf<span>412 pages · v7.3 · read before you begin</span></div>
+        <div class="pr-toggles"><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i><i></i></div></div>
+      <div class="pr-card" id="pr-d"><div class="pr-k">Scaling plan</div><div class="pr-pdf">Not available<span>upgrade requires migration</span></div><div class="pr-bar"><i style="width:18%"></i></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var T = { v: 0.4 }, msEl = document.getElementById("pr-ms");
+      function card(id, t, rx, ry) { tl.fromTo(id, { opacity: 0, scale: 0.8, y: ry || 60, x: rx || 0, rotation: 0, filter: "blur(10px)" }, { opacity: 1, scale: 1, y: 0, x: 0, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, t); }
+      // seam entry: pushed through from the previous world (growing)
+      tl.fromTo("#pr-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, 0);
+      // "A server that crawls" (15.72)
+      card("#pr-a", 1.3, -60);
+      tl.fromTo("#pr-bar", { width: "6%" }, { width: "34%", duration: 2.4, ease: "none" }, 1.4);
+      tl.fromTo(T, { v: 0.4 }, { v: 8.4, duration: 2.6, ease: "power1.in", onUpdate: function () { msEl.textContent = T.v.toFixed(1); } }, 1.4);
+      // "A site that crashes on launch day" (17.2 -> 18.9)
+      card("#pr-b", 2.9, 80);
+      tl.call(function () { document.getElementById("pr-502").textContent = "200 OK"; }, null, 2.9);
+      tl.to("#pr-b", { x: "+=14", duration: 0.06, repeat: 5, yoyo: true, ease: "none" }, 4.15);
+      tl.call(function () { var e = document.getElementById("pr-502"); e.textContent = "502"; document.getElementById("pr-errmsg").textContent = "Bad Gateway"; }, null, 4.3);
+      tl.to("#pr-b", { scale: 1.06, duration: 0.12, ease: "power2.out" }, 4.3);
+      tl.to("#pr-b", { scale: 1, duration: 0.5, ease: "power3.out" }, 4.42);
+      // "Dashboards you need a manual to understand" (19.07 -> 21.2)
+      card("#pr-c", 4.7, 0, 80);
+      tl.fromTo("#pr-c .pr-toggles i", { opacity: 0 }, { opacity: 1, duration: 0.2, stagger: 0.05, ease: "power2.out" }, 5.1);
+      card("#pr-d", 6.1, -70);
+      // "the dream gets heavy" (23.34): everything sinks under its own weight
+      tl.to("#pr-a", { y: 420, rotation: -7, opacity: 0.0, duration: 1.1, ease: "power3.in" }, 8.9);
+      tl.to("#pr-b", { y: 480, rotation: 5, opacity: 0.0, duration: 1.15, ease: "power3.in" }, 8.98);
+      tl.to("#pr-c", { y: 520, rotation: -4, opacity: 0.0, duration: 1.2, ease: "power3.in" }, 9.05);
+      tl.to("#pr-d", { y: 560, rotation: 6, opacity: 0.0, duration: 1.2, ease: "power3.in" }, 9.1);
+      // dead stillness until the arrival at 24.85 (stillness before climax)
+      window.__timelines["problem"] = tl;
+    })();
+  </script>
+</template>

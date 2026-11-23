@@ -1,0 +1,76 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #fff; }
+    #wd-stage { position: absolute; inset: 0; transform-origin: 50% 46%; }
+    #wd-globe { position: absolute; left: 50%; top: 46%; width: 1100px; height: 1100px; margin: -550px 0 0 -550px; opacity: 0; }
+    .wd-tile { position: absolute; width: 500px; height: 360px; border-radius: 30px; padding: 28px 30px; opacity: 0;
+      background: linear-gradient(150deg, rgba(255,255,255,.18), rgba(255,255,255,.05) 55%, rgba(120,150,255,.08)); border: 1px solid rgba(255,255,255,.22); backdrop-filter: blur(24px) saturate(1.5);
+      box-shadow: inset 0 1.5px 0 rgba(255,255,255,.4), 0 40px 100px rgba(2,8,60,.55); overflow: hidden; }
+    .wd-k { font: 500 26px "JetBrains Mono", monospace; letter-spacing: .2em; color: rgba(225,236,255,.95); }
+    .wd-t { font: 600 44px "Outfit"; margin-top: 10px; letter-spacing: -.01em; }
+    .wd-tile svg { position: absolute; left: 24px; right: 24px; bottom: 22px; width: calc(100% - 48px); height: 150px; }
+    #wd-a { left: 110px; top: 110px; } #wd-b { left: 1310px; top: 110px; } #wd-c { left: 110px; top: 540px; } #wd-d { left: 1310px; top: 540px; }
+    #wd-lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .wd-n { font: 600 64px "Outfit"; margin-top: 18px; letter-spacing: -.02em; }
+    .wd-n small { font: 500 23px "JetBrains Mono"; letter-spacing: .12em; color: #8ff0c8; margin-left: 10px; }
+    .wd-dots { position: absolute; left: 28px; bottom: 26px; right: 28px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; }
+    .wd-dots i { aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.14); }
+    @container (max-aspect-ratio: 1.2) {
+      #wd-globe { width: 820px; height: 820px; margin: -410px 0 0 -410px; top: 50%; }
+      .wd-tile { width: 440px; height: 300px; }
+      #wd-a { left: 60px; top: 90px; } #wd-b { left: 580px; top: 90px; } #wd-c { left: 60px; top: 560px; } #wd-d { left: 580px; top: 560px; }
+    }
+  </style>
+  <div id="root" data-composition-id="worlds" data-width="1920" data-height="1080">
+    <div id="wd-stage">
+      <canvas id="wd-globe" width="1100" height="1100"></canvas>
+      <svg id="wd-lines" viewBox="0 0 1920 1080" preserveAspectRatio="none" data-layout-ignore>
+        <g stroke="rgba(150,195,255,.85)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-dasharray="900" id="wd-lg">
+          <path id="wd-l1" d="M610 290 Q 800 290 880 440" stroke-dashoffset="900"/><path id="wd-l2" d="M1310 290 Q 1120 290 1040 440" stroke-dashoffset="900"/>
+          <path id="wd-l3" d="M610 720 Q 800 720 880 560" stroke-dashoffset="900"/><path id="wd-l4" d="M1310 720 Q 1120 720 1040 560" stroke-dashoffset="900"/>
+        </g>
+      </svg>
+      <div class="wd-tile" id="wd-a"><div class="wd-k">FINTECH</div><div class="wd-t">Payments, always on</div>
+        <svg viewBox="0 0 360 150" preserveAspectRatio="none"><path id="wd-fa" d="M0 130 C40 120 60 90 100 100 S160 60 200 70 S270 30 360 12" fill="none" stroke="#7fb0ff" stroke-width="5" stroke-linecap="round" stroke-dasharray="520" stroke-dashoffset="520"/></svg></div>
+      <div class="wd-tile" id="wd-b"><div class="wd-k">E-COMMERCE</div><div class="wd-t">Every checkout, instant</div><div class="wd-n"><span id="wd-orders">0</span><small>ORDERS / LIVE</small></div>
+        <div class="wd-dots" id="wd-od"></div></div>
+      <div class="wd-tile" id="wd-c"><div class="wd-k">SAAS</div><div class="wd-t">Scales with every signup</div>
+        <svg viewBox="0 0 360 150" preserveAspectRatio="none"><g fill="#0B64F8"><rect class="wd-bar" x="10" y="110" width="40" height="40" rx="8"/><rect class="wd-bar" x="70" y="90" width="40" height="60" rx="8"/><rect class="wd-bar" x="130" y="70" width="40" height="80" rx="8"/><rect class="wd-bar" x="190" y="45" width="40" height="105" rx="8"/><rect class="wd-bar" x="250" y="25" width="40" height="125" rx="8"/><rect class="wd-bar" x="310" y="4" width="40" height="146" rx="8" fill="#8e7cff"/></g></svg></div>
+      <div class="wd-tile" id="wd-d"><div class="wd-k">MULTIPLAYER</div><div class="wd-t">Worlds, played together</div><div class="wd-n"><span id="wd-pl">0</span><small>PLAYERS ONLINE</small></div>
+        <div class="wd-dots" id="wd-pd"></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var $ = function (s) { return document.querySelector(s); };
+      // local clock: scene starts at abs 58.15. Fintech 58.18 (0.03), Commerce 58.82 (0.67), SaaS ~59.7 (1.55), worlds 60.3-61.9, "All of it" 62.38 (4.23), limits 63.02-64.38
+      function dots(id, n) { var el = $(id); for (var i = 0; i < n; i++) el.appendChild(document.createElement("i")); }
+      dots("#wd-od", 24); dots("#wd-pd", 24);
+      tl.fromTo("#wd-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, 0);
+      function tile(id, t, dx) { tl.fromTo(id, { opacity: 0, y: 70, x: dx, scale: 0.85, filter: "blur(10px)" }, { opacity: 1, y: 0, x: 0, scale: 1, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, t); }
+      tile("#wd-a", 0.12, -50); tile("#wd-b", 0.78, 50); tile("#wd-c", 1.62, -50); tile("#wd-d", 2.35, 50);
+      tl.fromTo("#wd-fa", { strokeDashoffset: 520 }, { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 0.4);
+      var o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 18420, immediateRender: false, duration: 2.0, ease: "power2.out", onUpdate: function () { $("#wd-orders").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 1.0);
+      for (var i = 0; i < 24; i++) tl.to("#wd-od i:nth-child(" + (i + 1) + ")", { backgroundColor: "#0B64F8", duration: 0.1 }, 1.1 + i * 0.05);
+      tl.fromTo(".wd-bar", { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.5, ease: "power3.out", stagger: 0.12 }, 1.8);
+      var p = { v: 0 }; tl.fromTo(p, { v: 0 }, { v: 64210, immediateRender: false, duration: 2.0, ease: "power2.out", onUpdate: function () { $("#wd-pl").textContent = Math.round(p.v).toLocaleString("en-US"); } }, 2.5);
+      for (i = 0; i < 24; i++) tl.to("#wd-pd i:nth-child(" + (i + 1) + ")", { backgroundColor: i % 5 === 0 ? "#8e7cff" : "#8ff0c8", duration: 0.1 }, 2.6 + i * 0.05);
+      // "All of it..." the four worlds connect to one globe
+      var gc = $("#wd-globe"), gx = gc.getContext("2d"), G = { rot: -60 }, W = gc.width, R = W * 0.42;
+      var dd = [], N = 1800; for (i = 0; i < N; i++) { var yy = 1 - (i / (N - 1)) * 2; dd.push([Math.asin(yy) * 57.2958, (i * 2.399963 * 57.2958) % 360 - 180]); }
+      function drawG() { gx.clearRect(0, 0, W, W); var g = gx.createRadialGradient(W / 2, W / 2, R * 0.2, W / 2, W / 2, R * 1.3); g.addColorStop(0, "rgba(11,100,248,.4)"); g.addColorStop(0.75, "rgba(11,100,248,.1)"); g.addColorStop(1, "rgba(11,100,248,0)"); gx.fillStyle = g; gx.fillRect(0, 0, W, W);
+        for (var k = 0; k < dd.length; k++) { var la = dd[k][0] * 0.017453, lo = (dd[k][1] + G.rot) * 0.017453, z = Math.cos(la) * Math.cos(lo); if (z > 0) { gx.fillStyle = "rgba(175,208,255," + (0.12 + z * 0.55) + ")"; gx.fillRect(W / 2 + Math.cos(la) * Math.sin(lo) * R - 1.2, W / 2 - Math.sin(la) * R - 1.2, 2.6, 2.6); } }
+        gx.strokeStyle = "rgba(160,200,255,.4)"; gx.lineWidth = 2.5; gx.beginPath(); gx.arc(W / 2, W / 2, R, 0, 6.2832); gx.stroke(); }
+      tl.fromTo("#wd-globe", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 3.95);
+      tl.fromTo(G, { rot: -60 }, { rot: 80, duration: 5.0, ease: "none", immediateRender: false, onUpdate: drawG }, 3.95);
+      ["1", "2", "3", "4"].forEach(function (k, j) { tl.fromTo("#wd-l" + k, { strokeDashoffset: 900 }, { strokeDashoffset: 0, duration: 0.6, ease: "power3.out" }, 4.23 + j * 0.12); });
+      // "running without limits" (62.9-64.38): tiles fly into the globe = push forward
+      tl.to(["#wd-a", "#wd-b", "#wd-c", "#wd-d"], { scale: 0.5, opacity: 0, duration: 0.6, ease: "power3.in", stagger: 0.05 }, 5.2);
+      tl.to("#wd-lg", { opacity: 0, duration: 0.3 }, 5.3);
+      tl.to("#wd-globe", { scale: 1.9, duration: 1.1, ease: "power3.in" }, 5.3);
+      tl.to("#wd-stage", { opacity: 0, filter: "blur(16px)", duration: 0.34, ease: "power4.in" }, 6.1);
+      window.__timelines["worlds"] = tl;
+    })();
+  </script>
+</template>

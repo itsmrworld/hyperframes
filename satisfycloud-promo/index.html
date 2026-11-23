@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #02030f; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #02030f; }
+      #bg { position: absolute; inset: 0; z-index: 0; }
+      #hook { position: absolute; inset: 0; z-index: 2; }
+      #orb { position: absolute; left: 0; top: 0; width: 520px; height: 520px; z-index: 3; opacity: 0; }
+      #problem { position: absolute; inset: 0; z-index: 4; }
+      #arrive { position: absolute; inset: 0; z-index: 4; }
+      #lineup { position: absolute; inset: 0; z-index: 4; }
+      #worlds { position: absolute; inset: 0; z-index: 4; }
+      #cta { position: absolute; inset: 0; z-index: 4; }
+      #fx { position: absolute; inset: 0; z-index: 8; }
+      #captions { position: absolute; inset: 0; z-index: 9; }
+      .orb-halo { position: absolute; inset: -40%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,214,170,.5), rgba(120,170,255,.22) 45%, rgba(11,100,248,0) 100%); }
+      .orb-core { position: absolute; inset: 22%; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #fff 0, #e9f1ff 22%, #8fb7ff 55%, #2a6bff 100%); box-shadow: 0 0 120px 40px rgba(110,160,255,.55); }
+      .orb-cold { position: absolute; inset: 22%; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #d7dbe6 0, #8c93a6 45%, #3b4254 100%); opacity: 0; }
+      .orb-ring { position: absolute; inset: 6%; border-radius: 50%; border: 2px solid rgba(190,215,255,.65); opacity: 0; }
+      .orb-ring.r2 { inset: -8%; opacity: 0; border-color: rgba(190,215,255,.35); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="74" data-width="1920" data-height="1080">
+      <div id="bg" class="clip" data-composition-id="bg" data-composition-src="compositions/bg.html" data-start="0" data-duration="74" data-track-index="0" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="hook" class="clip" data-composition-id="hook" data-composition-src="compositions/hook.html" data-start="0" data-duration="14.39" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="orb" data-layout-ignore><div class="orb-halo"></div><div class="orb-ring"></div><div class="orb-ring r2"></div><div class="orb-core"></div><div class="orb-cold"></div></div>
+      <div id="problem" class="clip" data-composition-id="problem" data-composition-src="compositions/problem.html" data-start="14.39" data-duration="10.46" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="arrive" class="clip" data-composition-id="arrive" data-composition-src="compositions/arrive.html" data-start="24.85" data-duration="3.7" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="lineup" class="clip" data-composition-id="lineup" data-composition-src="compositions/lineup.html" data-start="28.55" data-duration="29.6" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="worlds" class="clip" data-composition-id="worlds" data-composition-src="compositions/worlds.html" data-start="58.15" data-duration="6.35" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="cta" class="clip" data-composition-id="cta" data-composition-src="compositions/cta.html" data-start="64.5" data-duration="9.5" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="fx" class="clip" data-composition-id="fx" data-composition-src="compositions/fx.html" data-start="0" data-duration="74" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+      <div id="captions" class="clip" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="74" data-track-index="4" data-track-kind="captions" data-width="1920" data-height="1080"></div>
+      <audio id="voice" src="assets/audio/voice_master.wav" data-start="0" data-duration="72.28" data-track-index="5" data-volume="1"></audio>
+      <audio id="score" src="assets/audio/score.wav" data-start="0" data-duration="74" data-track-index="6" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      (function () {
+        var tl = gsap.timeline({ paused: true });
+        var W = 1920, H = 1080, sq = false;
+        var P = function (fx, fy) { return { x: W * fx, y: H * fy }; };
+        // The orb is the idea: it is born at 3am, swells to a world, goes cold under the problem, and ignites into the brand.
+        var A = sq ? P(0.72, 0.47) : P(0.60, 0.50), B = sq ? P(0.76, 0.40) : P(0.64, 0.42), C = P(0.5, 0.46), D = sq ? P(0.82, 0.18) : P(0.88, 0.2), E = P(0.5, 0.92);
+        var pos = function (p) { return { x: p.x - 260, y: p.y - 260 }; };
+        tl.set("#orb", { x: pos(A).x, y: pos(A).y, scale: 0.05, opacity: 0, transformOrigin: "50% 50%" }, 0);
+        tl.to("#orb", { opacity: 1, scale: 0.22, duration: 0.7, ease: "power3.out" }, 4.59);
+        tl.to("#orb", { x: pos(B).x, y: pos(B).y - 30, scale: 0.27, duration: 1.6, ease: "power2.inOut" }, 5.86);
+        tl.to("#orb", { scale: 0.34, duration: 0.5, ease: "power3.out" }, 8.33);
+        tl.to("#orb", { scale: 0.42, duration: 0.7, ease: "power3.out" }, 9.09);
+        tl.to("#orb", { scale: 0.56, y: pos(B).y - 60, duration: 1.5, ease: "power2.inOut" }, 10.2);
+        tl.to("#orb", { x: pos(C).x, y: pos(C).y, scale: 1.45, duration: 1.7, ease: "power3.inOut" }, 12.15);
+        tl.to(".orb-ring", { opacity: 1, duration: 0.8, ease: "power2.out" }, 12.4);
+        tl.to(".orb-ring.r2", { opacity: 1, duration: 0.8, ease: "power2.out" }, 12.6);
+        // problem: the dream goes cold and sinks
+        tl.to("#orb", { x: pos(D).x, y: pos(D).y, scale: 0.42, duration: 0.6, ease: "power3.in" }, 14.1);
+        tl.to(".orb-ring", { opacity: 0, duration: 0.4 }, 14.1);
+        tl.to(".orb-ring.r2", { opacity: 0, duration: 0.4 }, 14.1);
+        tl.to(".orb-cold", { opacity: 1, duration: 1.2, ease: "power2.inOut" }, 14.4);
+        tl.to(".orb-halo", { opacity: 0.12, duration: 1.2, ease: "power2.inOut" }, 14.4);
+        tl.to("#orb", { y: pos(E).y, x: pos(C).x, scale: 0.3, opacity: 0.6, duration: 1.15, ease: "power3.in" }, 23.34);
+        tl.to("#orb", { opacity: 0, duration: 0.3, ease: "power2.in" }, 24.5);
+        // ignition (25.40) then collapses into the mark as the name lands (26.66)
+        tl.set(".orb-cold", { opacity: 0 }, 25.3);
+        tl.set(".orb-halo", { opacity: 1 }, 25.3);
+        tl.set("#orb", { x: pos(C).x, y: pos(P(0.5, 0.46)).y, scale: 0.08, opacity: 0 }, 25.3);
+        tl.to("#orb", { opacity: 1, scale: 0.7, duration: 0.7, ease: "power3.out" }, 25.4);
+        tl.to("#orb", { scale: 0.02, opacity: 0, duration: 0.5, ease: "power4.in" }, 26.15);
+        window.__timelines["main"] = tl;
+        tl.seek(0);
+      })();
+    </script>
+  </body>
+</html>

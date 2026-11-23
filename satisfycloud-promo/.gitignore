@@ -1,0 +1,6 @@
+assets/audio/score.wav
+assets/audio/voice_master.wav
+assets/audio/voice.mp3
+renders/
+.hyperframes/
+!compositions/
