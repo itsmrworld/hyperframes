@@ -1,11 +1,11 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; --fs: 56px; --bot: 118px; }
-    .cap { position: absolute; left: 0; right: 0; bottom: var(--bot); text-align: center; padding: 0 200px; }
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; }
+    .cap { --fs: 56px; --bot: 118px; position: absolute; left: 0; right: 0; bottom: var(--bot); text-align: center; padding: 0 200px; }
     .ci { display: inline-block; font-weight: 500; font-size: var(--fs); letter-spacing: -.01em; line-height: 1.15; color: #fff; text-shadow: 0 2px 30px rgba(0,8,50,.65), 0 0 2px rgba(0,8,50,.4); }
     .w { display: inline-block; opacity: .5; transform: translateY(6px); }
     .lt .ci { color: #0B1220; text-shadow: 0 2px 24px rgba(255,255,255,.7); }
-    @container (max-aspect-ratio: 1.2) { #root { --fs: 48px; --bot: 70px; } .cap { padding: 0 70px; } }
+    @container (max-aspect-ratio: 1.2) { .cap { --fs: 46px; --bot: 64px; padding: 0 70px; } }
   </style>
   <div id="root" data-composition-id="captions" data-width="1920" data-height="1080">
       {{CAPS}}

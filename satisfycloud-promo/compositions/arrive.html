@@ -1,6 +1,7 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "JetBrains Mono", monospace; color: #fff; --lw: 1100px; }
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "JetBrains Mono", monospace; color: #fff; }
+    #ar-stage { --lw: 1100px; }
     #ar-stage { position: absolute; inset: 0; transform-origin: 50% 46%; }
     #ar-bloom { position: absolute; left: 50%; top: 46%; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-radius: 50%;
       background: radial-gradient(closest-side, rgba(120,170,255,.55), rgba(11,100,248,.2) 45%, rgba(11,100,248,0) 100%); opacity: 0; }
@@ -11,7 +12,7 @@
     #ar-mark { position: absolute; left: 0; top: 0; height: 100%; width: calc(var(--lw) * 0.2545); display: block; opacity: 0; }
     #ar-word { position: absolute; top: 0; left: calc(var(--lw) * 0.2746); height: 100%; width: calc(var(--lw) * 0.7254); display: block; clip-path: inset(0 100% 0 0); }
     #ar-tag { position: absolute; left: 0; right: 0; top: 62%; text-align: center; font-size: 28px; letter-spacing: .5em; color: rgba(200,220,255,.85); opacity: 0; padding-left: .5em; }
-    @container (max-aspect-ratio: 1.2) { #root { --lw: 900px; } #ar-bloom { width: 1200px; height: 1200px; margin: -600px 0 0 -600px; } #ar-tag { font-size: 18px; letter-spacing: .32em; } }
+    @container (max-aspect-ratio: 1.2) { #ar-stage { --lw: 900px; } #ar-bloom { width: 1200px; height: 1200px; margin: -600px 0 0 -600px; } #ar-tag { font-size: 18px; letter-spacing: .32em; } }
   </style>
   <div id="root" data-composition-id="arrive" data-width="1920" data-height="1080">
     <div id="ar-stage">

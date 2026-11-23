@@ -1,7 +1,7 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #fff;
-      --cl: 350px; --ct: 160px; --cw: 1220px; --ch: 690px; --ey: 92px; }
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #fff; }
+    #ln-stage { --cl: 350px; --ct: 160px; --cw: 1220px; --ch: 690px; --ey: 92px; }
     #ln-stage { position: absolute; inset: 0; transform-origin: 50% 46%; }
     #ln-eye { position: absolute; left: 0; right: 0; top: var(--ey); text-align: center; font: 500 26px/1 "JetBrains Mono", monospace; letter-spacing: .26em; color: rgba(205,222,255,.92); height: 34px; }
     #ln-eye span { position: absolute; left: 0; right: 0; opacity: 0; }
@@ -99,7 +99,7 @@
     .rail u { position: absolute; top: -9px; left: 0; width: 34px; height: 34px; margin-left: -17px; border-radius: 50%; background: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.5), 0 0 0 6px rgba(11,100,248,.35); }
     #ln-cur { position: absolute; left: 0; top: 0; width: 84px; height: 84px; opacity: 0; filter: drop-shadow(0 12px 18px rgba(0,0,10,.55)); z-index: 20; }
     @container (max-aspect-ratio: 1.2) {
-      #root { --cl: 50px; --ct: 190px; --cw: 980px; --ch: 760px; --ey: 100px; }
+      #ln-stage { --cl: 50px; --ct: 190px; --cw: 980px; --ch: 690px; --ey: 100px; }
       .h { font-size: 46px; } .ln-card { padding: 36px 36px; }
       .glw { grid-template-columns: 1fr; height: 540px; } .cl { display: none; }
       .vps { grid-template-columns: 1fr; } .gm { grid-template-columns: 1fr 260px; }

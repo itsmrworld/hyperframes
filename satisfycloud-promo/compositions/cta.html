@@ -1,6 +1,7 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; color: #0B1220; --lw: 880px; }
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; color: #0B1220; }
+    #cta-stage { --lw: 880px; }
     #cta-stage { position: absolute; inset: 0; transform-origin: 50% 50%; }
     #cta-photo { position: absolute; left: 140px; top: 80px; width: 460px; height: 780px; border-radius: 36px; overflow: hidden; opacity: 0;
       box-shadow: 0 50px 120px rgba(11,60,200,.35), 0 0 0 1px rgba(11,100,248,.2); }
@@ -20,9 +21,9 @@
     #cta-cur { position: absolute; left: 0; top: 0; width: 96px; height: 96px; opacity: 0; filter: drop-shadow(0 12px 18px rgba(0,30,120,.4)); }
     #cta-flash { position: absolute; left: 0; top: 740px; width: 760px; height: 118px; border-radius: 60px; box-shadow: 0 0 0 0 rgba(11,100,248,.6); opacity: 0; }
     @container (max-aspect-ratio: 1.2) {
-      #root { --lw: 800px; }
+      #cta-stage { --lw: 800px; }
       #cta-photo { left: 70px; top: 70px; width: 940px; height: 300px; border-radius: 30px; }
-      #cta-photo img { left: -200px; top: -1130px; width: 1000px; height: 2022px; }
+      #cta-photo img { left: -120px; top: -1215px; width: 1100px; height: 2224px; }
       #cta-col { left: 70px; right: 70px; } #cta-lock { top: 430px; } #cta-h { top: 580px; font-size: 104px; } #cta-url { top: 880px; width: 940px; height: 104px; font-size: 44px; } #cta-flash { top: 880px; width: 940px; height: 104px; }
     }
   </style>

@@ -1,7 +1,7 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; color: #fff;
-      --pw: 1187px; --ph: 2400px; --pl: 930px; --pt: -1064px; }
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; color: #fff; }
+    #hook-stage { --pw: 1187px; --ph: 2400px; --pl: 930px; --pt: -1064px; }
     #hook-stage { position: absolute; inset: 0; transform-origin: 62% 48%; }
     #hook-glow { position: absolute; left: 44%; top: 14%; width: 62%; height: 84%; border-radius: 50%;
       background: radial-gradient(closest-side, rgba(11,100,248,.55), rgba(60,70,255,.18) 55%, rgba(11,100,248,0) 100%); opacity: 0; }
@@ -15,7 +15,7 @@
     #hook-hud b { color: #fff; font-weight: 500; }
     #hook-vig { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2,3,15,.85) 0, rgba(2,3,15,0) 46%), linear-gradient(0deg, rgba(2,3,15,.7), rgba(2,3,15,0) 35%); }
     @container (max-aspect-ratio: 1.2) {
-      #root { --pw: 742px; --ph: 1500px; --pl: 330px; --pt: -440px; }
+      #hook-stage { --pw: 742px; --ph: 1500px; --pl: 330px; --pt: -440px; }
       #hook-clock { left: 70px; top: 190px; font-size: 190px; }
       #hook-clock small { font-size: 34px; }
       #hook-hud { left: 70px; top: 70px; font-size: 19px; }
