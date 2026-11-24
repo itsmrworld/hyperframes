@@ -1,480 +1,551 @@
 {
-  "duration": 50,
+  "duration": 43,
   "words": [
     {
-      "text": "Every",
-      "start": 4.5,
-      "end": 5.182
+      "text": "Before",
+      "start": 4.71,
+      "end": 5.265
     },
     {
-      "text": "story",
-      "start": 5.182,
-      "end": 5.636
+      "text": "the",
+      "start": 5.265,
+      "end": 5.45
     },
     {
-      "text": "begins",
-      "start": 5.636,
-      "end": 6.091
+      "text": "logo.",
+      "start": 5.45,
+      "end": 5.82
     },
     {
-      "text": "with",
-      "start": 6.091,
-      "end": 6.318
+      "text": "Before",
+      "start": 6.29,
+      "end": 6.787
+    },
+    {
+      "text": "the",
+      "start": 6.787,
+      "end": 6.953
+    },
+    {
+      "text": "website.",
+      "start": 6.953,
+      "end": 7.45
+    },
+    {
+      "text": "Before",
+      "start": 7.84,
+      "end": 8.447
+    },
+    {
+      "text": "the",
+      "start": 8.447,
+      "end": 8.65
+    },
+    {
+      "text": "first",
+      "start": 8.65,
+      "end": 8.853
+    },
+    {
+      "text": "customer,",
+      "start": 8.853,
+      "end": 9.46
+    },
+    {
+      "text": "there",
+      "start": 10.28,
+      "end": 10.547
+    },
+    {
+      "text": "was",
+      "start": 10.547,
+      "end": 10.68
     },
     {
       "text": "a",
-      "start": 6.318,
-      "end": 6.545
+      "start": 10.68,
+      "end": 10.813
     },
     {
       "text": "name.",
-      "start": 6.545,
-      "end": 7.0
+      "start": 10.813,
+      "end": 11.08
     },
     {
-      "text": "A",
-      "start": 7.6,
-      "end": 7.887
+      "text": "Now",
+      "start": 11.61,
+      "end": 11.867
     },
     {
-      "text": "late",
-      "start": 7.887,
-      "end": 8.462
-    },
-    {
-      "text": "night.",
-      "start": 8.462,
-      "end": 8.994
-    },
-    {
-      "text": "A",
-      "start": 9.094,
-      "end": 9.382
-    },
-    {
-      "text": "blank",
-      "start": 9.382,
-      "end": 9.669
-    },
-    {
-      "text": "screen.",
-      "start": 9.669,
-      "end": 10.201
-    },
-    {
-      "text": "One",
-      "start": 10.301,
-      "end": 10.876
-    },
-    {
-      "text": "idea",
-      "start": 10.876,
-      "end": 11.451
-    },
-    {
-      "text": "you",
-      "start": 11.451,
-      "end": 11.738
-    },
-    {
-      "text": "can't",
-      "start": 11.738,
-      "end": 12.025
-    },
-    {
-      "text": "let",
-      "start": 12.025,
-      "end": 12.313
-    },
-    {
-      "text": "go.",
-      "start": 12.313,
-      "end": 12.6
-    },
-    {
-      "text": "So",
-      "start": 13.1,
-      "end": 13.533
-    },
-    {
-      "text": "you",
-      "start": 13.533,
-      "end": 13.967
-    },
-    {
-      "text": "search.",
-      "start": 13.967,
-      "end": 14.4
-    },
-    {
-      "text": "And",
-      "start": 14.9,
-      "end": 15.172
+      "text": "it's",
+      "start": 11.867,
+      "end": 12.125
     },
     {
       "text": "your",
-      "start": 15.172,
-      "end": 15.443
+      "start": 12.125,
+      "end": 12.383
     },
     {
-      "text": "name",
-      "start": 15.443,
-      "end": 15.987
+      "text": "turn.",
+      "start": 12.383,
+      "end": 12.64
     },
     {
-      "text": "appears.",
-      "start": 15.987,
-      "end": 16.757
-    },
-    {
-      "text": "Live.",
-      "start": 16.857,
-      "end": 17.4
-    },
-    {
-      "text": "Dot",
-      "start": 17.9,
-      "end": 18.177
-    },
-    {
-      "text": "shop,",
-      "start": 18.177,
-      "end": 18.686
-    },
-    {
-      "text": "one",
-      "start": 18.786,
-      "end": 19.339
-    },
-    {
-      "text": "dollar",
-      "start": 19.339,
-      "end": 19.893
-    },
-    {
-      "text": "twelve",
-      "start": 19.893,
-      "end": 20.446
-    },
-    {
-      "text": "a",
-      "start": 20.446,
-      "end": 20.723
-    },
-    {
-      "text": "year.",
-      "start": 20.723,
-      "end": 21.0
-    },
-    {
-      "text": "Dot",
-      "start": 21.2,
-      "end": 21.435
-    },
-    {
-      "text": "online,",
-      "start": 21.435,
-      "end": 22.324
-    },
-    {
-      "text": "one",
-      "start": 22.424,
-      "end": 22.894
-    },
-    {
-      "text": "forty-six.",
-      "start": 22.894,
-      "end": 23.6
-    },
-    {
-      "text": "Dot",
-      "start": 23.8,
-      "end": 24.068
-    },
-    {
-      "text": "xyz,",
-      "start": 24.068,
-      "end": 24.559
-    },
-    {
-      "text": "two",
-      "start": 24.659,
-      "end": 24.927
-    },
-    {
-      "text": "fifty-five.",
-      "start": 24.927,
-      "end": 26.0
-    },
-    {
-      "text": "Dot",
-      "start": 26.3,
-      "end": 26.605
-    },
-    {
-      "text": "org,",
-      "start": 26.605,
-      "end": 27.176
-    },
-    {
-      "text": "eight",
-      "start": 27.276,
-      "end": 27.58
-    },
-    {
-      "text": "forty-nine.",
-      "start": 27.58,
-      "end": 28.8
-    },
-    {
-      "text": "Dot",
-      "start": 29.0,
-      "end": 29.283
-    },
-    {
-      "text": "com,",
-      "start": 29.283,
-      "end": 29.804
-    },
-    {
-      "text": "eleven",
-      "start": 29.904,
-      "end": 30.752
-    },
-    {
-      "text": "twenty-six.",
-      "start": 30.752,
-      "end": 31.6
-    },
-    {
-      "text": "Add",
-      "start": 32.2,
-      "end": 32.546
-    },
-    {
-      "text": "to",
-      "start": 32.546,
-      "end": 32.892
-    },
-    {
-      "text": "cart.",
-      "start": 32.892,
-      "end": 33.554
-    },
-    {
-      "text": "Pay.",
-      "start": 33.654,
-      "end": 34.0
-    },
-    {
-      "text": "The",
-      "start": 34.5,
-      "end": 34.86
-    },
-    {
-      "text": "name",
-      "start": 34.86,
-      "end": 35.58
-    },
-    {
-      "text": "is",
-      "start": 35.58,
-      "end": 35.94
-    },
-    {
-      "text": "yours.",
-      "start": 35.94,
-      "end": 36.3
-    },
-    {
-      "text": "Then",
-      "start": 36.9,
-      "end": 37.141
-    },
-    {
-      "text": "give",
-      "start": 37.141,
-      "end": 37.622
+      "text": "Type",
+      "start": 13.04,
+      "end": 13.34
     },
     {
       "text": "it",
-      "start": 37.622,
-      "end": 37.863
+      "start": 13.34,
+      "end": 13.49
+    },
+    {
+      "text": "in.",
+      "start": 13.49,
+      "end": 13.64
+    },
+    {
+      "text": "See",
+      "start": 13.92,
+      "end": 14.145
+    },
+    {
+      "text": "it",
+      "start": 14.145,
+      "end": 14.37
+    },
+    {
+      "text": "appear.",
+      "start": 14.37,
+      "end": 14.82
+    },
+    {
+      "text": "Live.",
+      "start": 15.2,
+      "end": 15.74
+    },
+    {
+      "text": "Dot",
+      "start": 16.05,
+      "end": 16.249
+    },
+    {
+      "text": "shop,",
+      "start": 16.249,
+      "end": 16.587
+    },
+    {
+      "text": "one",
+      "start": 16.687,
+      "end": 17.085
+    },
+    {
+      "text": "dollar",
+      "start": 17.085,
+      "end": 17.484
+    },
+    {
+      "text": "twelve",
+      "start": 17.484,
+      "end": 17.882
     },
     {
       "text": "a",
-      "start": 37.863,
-      "end": 38.104
+      "start": 17.882,
+      "end": 18.081
     },
     {
-      "text": "home,",
-      "start": 38.104,
-      "end": 38.774
+      "text": "year.",
+      "start": 18.081,
+      "end": 18.28
     },
     {
-      "text": "and",
-      "start": 38.874,
-      "end": 39.115
+      "text": "Dot",
+      "start": 18.51,
+      "end": 18.692
     },
     {
-      "text": "go",
-      "start": 39.115,
-      "end": 39.356
+      "text": "online,",
+      "start": 18.692,
+      "end": 19.358
     },
     {
-      "text": "live",
-      "start": 39.356,
-      "end": 39.837
+      "text": "one",
+      "start": 19.458,
+      "end": 19.823
+    },
+    {
+      "text": "forty-six.",
+      "start": 19.823,
+      "end": 20.37
+    },
+    {
+      "text": "Dot",
+      "start": 20.58,
+      "end": 20.867
+    },
+    {
+      "text": "xyz,",
+      "start": 20.867,
+      "end": 21.397
+    },
+    {
+      "text": "two",
+      "start": 21.497,
+      "end": 21.784
+    },
+    {
+      "text": "fifty-five.",
+      "start": 21.784,
+      "end": 22.93
+    },
+    {
+      "text": "Dot",
+      "start": 23.17,
+      "end": 23.374
+    },
+    {
+      "text": "org,",
+      "start": 23.374,
+      "end": 23.722
+    },
+    {
+      "text": "eight",
+      "start": 23.822,
+      "end": 24.025
+    },
+    {
+      "text": "forty-nine.",
+      "start": 24.025,
+      "end": 24.84
+    },
+    {
+      "text": "Dot",
+      "start": 25.14,
+      "end": 25.455
+    },
+    {
+      "text": "com,",
+      "start": 25.455,
+      "end": 25.77
+    },
+    {
+      "text": "eleven",
+      "start": 25.93,
+      "end": 26.53
+    },
+    {
+      "text": "twenty-six.",
+      "start": 26.53,
+      "end": 27.13
+    },
+    {
+      "text": "Add",
+      "start": 27.39,
+      "end": 27.64
+    },
+    {
+      "text": "to",
+      "start": 27.64,
+      "end": 27.89
+    },
+    {
+      "text": "cart.",
+      "start": 27.89,
+      "end": 28.14
+    },
+    {
+      "text": "Pay.",
+      "start": 28.51,
+      "end": 28.85
+    },
+    {
+      "text": "And",
+      "start": 29.28,
+      "end": 29.472
+    },
+    {
+      "text": "just",
+      "start": 29.472,
+      "end": 29.664
+    },
+    {
+      "text": "like",
+      "start": 29.664,
+      "end": 30.048
+    },
+    {
+      "text": "that,",
+      "start": 30.048,
+      "end": 30.24
     },
     {
       "text": "the",
-      "start": 39.837,
-      "end": 40.078
-    },
-    {
-      "text": "same",
-      "start": 40.078,
-      "end": 40.559
-    },
-    {
-      "text": "day.",
-      "start": 40.559,
-      "end": 40.8
-    },
-    {
-      "text": "SatisfyCloud.",
-      "start": 41.4,
-      "end": 42.4
-    },
-    {
-      "text": "Claim",
-      "start": 42.8,
-      "end": 43.111
-    },
-    {
-      "text": "the",
-      "start": 43.111,
-      "end": 43.422
+      "start": 30.5,
+      "end": 30.718
     },
     {
       "text": "name",
-      "start": 43.422,
-      "end": 44.044
+      "start": 30.718,
+      "end": 31.154
+    },
+    {
+      "text": "is",
+      "start": 31.154,
+      "end": 31.372
+    },
+    {
+      "text": "yours.",
+      "start": 31.372,
+      "end": 31.59
+    },
+    {
+      "text": "Then",
+      "start": 31.89,
+      "end": 32.019
+    },
+    {
+      "text": "give",
+      "start": 32.019,
+      "end": 32.276
+    },
+    {
+      "text": "it",
+      "start": 32.276,
+      "end": 32.404
+    },
+    {
+      "text": "a",
+      "start": 32.404,
+      "end": 32.533
+    },
+    {
+      "text": "home,",
+      "start": 32.533,
+      "end": 32.79
+    },
+    {
+      "text": "and",
+      "start": 33.03,
+      "end": 33.224
+    },
+    {
+      "text": "go",
+      "start": 33.224,
+      "end": 33.418
+    },
+    {
+      "text": "live",
+      "start": 33.418,
+      "end": 33.805
+    },
+    {
+      "text": "the",
+      "start": 33.805,
+      "end": 33.999
+    },
+    {
+      "text": "same",
+      "start": 33.999,
+      "end": 34.386
+    },
+    {
+      "text": "day.",
+      "start": 34.386,
+      "end": 34.58
+    },
+    {
+      "text": "SatisfyCloud.",
+      "start": 34.86,
+      "end": 35.96
+    },
+    {
+      "text": "Claim",
+      "start": 36.28,
+      "end": 36.514
+    },
+    {
+      "text": "the",
+      "start": 36.514,
+      "end": 36.749
+    },
+    {
+      "text": "name",
+      "start": 36.749,
+      "end": 37.218
     },
     {
       "text": "your",
-      "start": 44.044,
-      "end": 44.356
+      "start": 37.218,
+      "end": 37.452
     },
     {
       "text": "brand",
-      "start": 44.356,
-      "end": 44.667
+      "start": 37.452,
+      "end": 37.687
     },
     {
       "text": "deserves.",
-      "start": 44.667,
-      "end": 45.6
+      "start": 37.687,
+      "end": 38.39
     }
   ],
   "lines": [
     {
-      "text": "Every story begins with a name.",
-      "start": 4.5,
-      "end": 7.0,
+      "text": "Before the logo.",
+      "start": 4.71,
+      "end": 5.82,
       "first": 0,
+      "last": 2
+    },
+    {
+      "text": "Before the website.",
+      "start": 6.29,
+      "end": 7.45,
+      "first": 3,
       "last": 5
     },
     {
-      "text": "A late night. A blank screen. One idea you can't let go.",
-      "start": 7.6,
-      "end": 12.6,
+      "text": "Before the first customer,",
+      "start": 7.84,
+      "end": 9.46,
       "first": 6,
+      "last": 9
+    },
+    {
+      "text": "there was a name.",
+      "start": 10.28,
+      "end": 11.08,
+      "first": 10,
+      "last": 13
+    },
+    {
+      "text": "Now it's your turn.",
+      "start": 11.61,
+      "end": 12.64,
+      "first": 14,
       "last": 17
     },
     {
-      "text": "So you search.",
-      "start": 13.1,
-      "end": 14.4,
+      "text": "Type it in.",
+      "start": 13.04,
+      "end": 13.64,
       "first": 18,
       "last": 20
     },
     {
-      "text": "And your name appears. Live.",
-      "start": 14.9,
-      "end": 17.4,
+      "text": "See it appear.",
+      "start": 13.92,
+      "end": 14.82,
       "first": 21,
-      "last": 25
+      "last": 23
+    },
+    {
+      "text": "Live.",
+      "start": 15.2,
+      "end": 15.74,
+      "first": 24,
+      "last": 24
     },
     {
       "text": "Dot shop, one dollar twelve a year.",
-      "start": 17.9,
-      "end": 21.0,
-      "first": 26,
-      "last": 32
+      "start": 16.05,
+      "end": 18.28,
+      "first": 25,
+      "last": 31
     },
     {
       "text": "Dot online, one forty-six.",
-      "start": 21.2,
-      "end": 23.6,
-      "first": 33,
-      "last": 36
+      "start": 18.51,
+      "end": 20.37,
+      "first": 32,
+      "last": 35
     },
     {
       "text": "Dot xyz, two fifty-five.",
-      "start": 23.8,
-      "end": 26.0,
-      "first": 37,
-      "last": 40
+      "start": 20.58,
+      "end": 22.93,
+      "first": 36,
+      "last": 39
     },
     {
       "text": "Dot org, eight forty-nine.",
-      "start": 26.3,
-      "end": 28.8,
-      "first": 41,
-      "last": 44
+      "start": 23.17,
+      "end": 24.84,
+      "first": 40,
+      "last": 43
     },
     {
-      "text": "Dot com, eleven twenty-six.",
-      "start": 29.0,
-      "end": 31.6,
-      "first": 45,
-      "last": 48
+      "text": "Dot com,",
+      "start": 25.14,
+      "end": 25.77,
+      "first": 44,
+      "last": 45
     },
     {
-      "text": "Add to cart. Pay.",
-      "start": 32.2,
-      "end": 34.0,
-      "first": 49,
-      "last": 52
+      "text": "eleven twenty-six.",
+      "start": 25.93,
+      "end": 27.13,
+      "first": 46,
+      "last": 47
     },
     {
-      "text": "The name is yours.",
-      "start": 34.5,
-      "end": 36.3,
-      "first": 53,
-      "last": 56
+      "text": "Add to cart.",
+      "start": 27.39,
+      "end": 28.14,
+      "first": 48,
+      "last": 50
     },
     {
-      "text": "Then give it a home, and go live the same day.",
-      "start": 36.9,
-      "end": 40.8,
-      "first": 57,
-      "last": 67
+      "text": "Pay.",
+      "start": 28.51,
+      "end": 28.85,
+      "first": 51,
+      "last": 51
+    },
+    {
+      "text": "And just like that,",
+      "start": 29.28,
+      "end": 30.24,
+      "first": 52,
+      "last": 55
+    },
+    {
+      "text": "the name is yours.",
+      "start": 30.5,
+      "end": 31.59,
+      "first": 56,
+      "last": 59
+    },
+    {
+      "text": "Then give it a home,",
+      "start": 31.89,
+      "end": 32.79,
+      "first": 60,
+      "last": 64
+    },
+    {
+      "text": "and go live the same day.",
+      "start": 33.03,
+      "end": 34.58,
+      "first": 65,
+      "last": 70
     },
     {
       "text": "SatisfyCloud.",
-      "start": 41.4,
-      "end": 42.4,
-      "first": 68,
-      "last": 68
+      "start": 34.86,
+      "end": 35.96,
+      "first": 71,
+      "last": 71
     },
     {
       "text": "Claim the name your brand deserves.",
-      "start": 42.8,
-      "end": 45.6,
-      "first": 69,
-      "last": 74
+      "start": 36.28,
+      "end": 38.39,
+      "first": 72,
+      "last": 77
     }
   ]
 }

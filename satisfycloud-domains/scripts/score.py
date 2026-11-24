@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """SatisfyCloud score + sound design, synthesised deterministically (numpy only). Output: assets/audio/score.wav (48k stereo)."""
 import numpy as np, subprocess, wave, sys
-SR = 48000; DUR = 50.0; N = int(DUR * SR)
+SR = 48000; DUR = 43.0; N = int(DUR * SR)
 rng = np.random.default_rng(20261123)
 t = np.arange(N) / SR
 
@@ -136,32 +136,33 @@ CH = {"cm": ["C3", "G3", "Bb3", "D4", "Eb4"], "ab": ["Ab2", "Eb3", "G3", "C4", "
 FR = lambda k: [hz(n) for n in CH[k]]
 ROOT = {"cm": "C2", "ab": "Ab1", "eb": "Eb2", "bb": "Bb1"}
 BEAT = 0.6
-# 0 - 7: slow dark swell, low and warm. nothing thin, nothing high.
-sd = (np.sin(2 * np.pi * hz("C1") * t) + 0.6 * np.sin(2 * np.pi * hz("C2") * t) + 0.25 * np.sin(2 * np.pi * hz("G2") * t)) * env([(0, 0), (3.0, 0.07), (12.0, 0.08), (13.0, 0.0)])
+# 0 - 4.5: the light rises with no voice: slow dark swell, low and warm. nothing thin, nothing high.
+sd = (np.sin(2 * np.pi * hz("C1") * t) + 0.6 * np.sin(2 * np.pi * hz("C2") * t) + 0.25 * np.sin(2 * np.pi * hz("G2") * t)) * env([(0, 0), (2.2, 0.07), (10.5, 0.08), (11.5, 0.0)])
 music[0] += sd; music[1] += sd
-pad(FR("cm"), 0.3, 13.2, 3.6, 1.6, 0.42, bright=(0.15, 0.55), K=4, seed=61)
-swell(0.8, 3.6, 200, 1800, 0.10); swell(3.8, 2.8, 400, 3200, 0.12)
-whoosh(2.5, 1.4, 250, 2000, 0.10, -0.3, 0.3, 61)
-whoosh(6.45, 0.5, 500, 4500, 0.24, -0.4, 0.4, 62)
-# 7 - 12.6: three things that do not exist yet (low wooden knocks), then the name (warm chord)
-for tn, nt in [(7.6, "G3"), (9.0, "Bb3"), (10.6, "D4")]: pluck(hz(nt), tn, 0.12, 0.0, 1.4, 1.0); kick(tn, 0.22)
-pad(FR("ab"), 11.3, 15.0, 0.6, 1.2, 0.34, bright=(0.3, 0.7), K=4, seed=63)
-stab([hz("Ab3"), hz("Eb4"), hz("G4"), hz("C5")], 11.9, 0.09, 1.2)
-whoosh(12.35, 0.55, 500, 4500, 0.24, -0.4, 0.4, 64)
-# 12.6 - 17.9: the search. pulse of low thumps, rising as the name is typed
-click(13.98, 0.2); whoosh(14.05, 0.9, 400, 3000, 0.16, -0.3, 0.5, 65)
-for i in range(8): kick(14.2 + i * BEAT * 0.8, 0.12 + 0.03 * i)
-for i in range(9): tick(15.0 + i * 0.094, 2000 + rng.integers(-300, 300), 0.07, -0.1 + 0.025 * i, 0.02, 0.25)
-pop(15.8, 740, 0.09, 0.0)
-for i, tc in enumerate([16.15, 16.3, 16.45]): pop(tc, 740 + 110 * (i + 1), 0.08, -0.3 + 0.3 * i)
-swell(16.6, 1.3, 300, 6500, 0.2)
-# 17.9 - 32: prices. a real groove: kick, offbeat hats, bass, chord stabs, a sparse melody on the price cues
-GROOVE = [(17.9, 22.4, "cm"), (22.4, 26.8, "ab"), (26.8, 31.2, "eb"), (31.2, 32.0, "bb")]
-pad(FR("cm"), 17.4, 23.0, 1.2, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=70)
-pad(FR("ab"), 22.2, 27.4, 1.2, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=71)
-pad(FR("eb"), 26.6, 31.8, 1.2, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=72)
-tb = 17.9; k = 0
-while tb < 31.9:
+pad(FR("cm"), 0.2, 11.8, 2.6, 1.4, 0.42, bright=(0.15, 0.55), K=4, seed=61)
+swell(0.5, 2.6, 200, 1800, 0.10); swell(2.5, 2.0, 400, 3200, 0.12)
+whoosh(2.1, 1.2, 250, 2000, 0.10, -0.3, 0.3, 61)
+whoosh(4.1, 0.45, 500, 4500, 0.24, -0.4, 0.4, 62)
+# 4.5 - 11.5: three things that do not exist yet (low wooden knocks on each voice cue), then the name (warm chord)
+for tn, nt in [(4.75, "G3"), (6.35, "Bb3"), (7.9, "D4")]: pluck(hz(nt), tn, 0.12, 0.0, 1.4, 1.0); kick(tn, 0.22)
+pad(FR("ab"), 10.0, 14.0, 0.5, 1.2, 0.34, bright=(0.3, 0.7), K=4, seed=63)
+stab([hz("Ab3"), hz("Eb4"), hz("G4"), hz("C5")], 10.3, 0.09, 1.2)
+whoosh(11.15, 0.5, 500, 4500, 0.24, -0.4, 0.4, 64)
+# 11.5 - 16.1: the search. click, dive, typing, the name appears: a pulse of low thumps that rises
+click(12.45, 0.2); whoosh(12.55, 0.8, 400, 3000, 0.16, -0.3, 0.5, 65)
+for i in range(7): kick(12.7 + i * BEAT * 0.8, 0.12 + 0.03 * i)
+for i in range(9): tick(13.0 + i * 0.07, 2000 + rng.integers(-300, 300), 0.07, -0.1 + 0.025 * i, 0.02, 0.25)
+pop(13.8, 740, 0.09, 0.0)
+for i, tc in enumerate([14.1, 14.25, 14.4]): pop(tc, 740 + 110 * (i + 1), 0.08, -0.3 + 0.3 * i)
+swell(14.4, 0.8, 300, 6500, 0.18); pop(15.25, 1050, 0.11, 0.0); stab([hz(n) for n in ["Eb4", "G4", "Bb4"]], 15.25, 0.08, 0.9)
+whoosh(15.78, 0.45, 500, 4500, 0.24, -0.4, 0.4, 66)
+# 16.1 - 27.3: prices. a real groove: kick, offbeat hats, bass, chord stabs, a melody note on every price cue
+GROOVE = [(16.1, 20.4, "cm"), (20.4, 25.0, "ab"), (25.0, 27.3, "eb")]
+pad(FR("cm"), 15.8, 21.0, 1.0, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=70)
+pad(FR("ab"), 20.2, 25.6, 1.0, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=71)
+pad(FR("eb"), 24.8, 27.8, 1.0, 1.2, 0.26, bright=(0.3, 0.6), K=4, seed=72)
+tb = 16.1; k = 0
+while tb < 27.2:
     g = [x for x in GROOVE if x[0] <= tb < x[1]][0][2]; r = hz(ROOT[g])
     kick(tb, 0.34 if k % 4 == 0 else 0.30)
     hat(tb + BEAT / 2, 0.05, 0.4 if k % 2 else -0.4, open_=(k % 4 == 3))
@@ -169,34 +170,34 @@ while tb < 31.9:
     if k % 4 == 2: bass(r * 2 ** (7 / 12), tb + BEAT * 0.75, 0.3, 0.2)
     if k % 4 in (1, 3): stab([hz(n) for n in CH[g][1:4]], tb + BEAT / 2, 0.06, 0.3, 0.3 if k % 2 else -0.3)
     tb += BEAT; k += 1
-for i, (tc, nt) in enumerate([(18.15, "G5"), (21.25, "Bb5"), (23.85, "C6"), (26.35, "D6"), (29.05, "G6")]):
+for i, (tc, nt) in enumerate([(16.2, "G5"), (18.55, "Bb5"), (20.65, "C6"), (23.2, "D6"), (25.15, "G6")]):
     pop(tc, hz(nt) * 0.5, 0.10, -0.4 + 0.2 * i); pluck(hz(nt), tc + 0.04, 0.07, 0.3, 0.9, 1.0)
     for j in range(5): tick(tc + 0.2 + j * 0.16, 2000 + 140 * j, 0.03, 0.0, 0.012, 0.3)
-swell(31.0, 0.9, 300, 7000, 0.22); whoosh(31.8, 0.5, 500, 4500, 0.24, -0.4, 0.4, 66)
-# 32 - 36.9: the groove drops out; two clicks; a held beat; a warm chord when the name is his
-click(32.62, 0.2); pop(32.75, 940, 0.12, 0.3); click(33.5, 0.2); pop(33.62, 1100, 0.12, -0.2)
-whoosh(34.2, 0.45, 7000, 500, 0.14, 0.3, -0.3, 67)
-kick(34.55, 0.5); pad(FR("eb"), 34.5, 38.5, 0.3, 1.6, 0.42, bright=(0.5, 0.8), K=4, seed=73)
-stab([hz(n) for n in ["Eb4", "G4", "Bb4", "D5"]], 34.6, 0.10, 1.6)
-for i, nt in enumerate(["G5", "Bb5", "D6"]): pluck(hz(nt), 34.9 + i * 0.16, 0.07, -0.3 + 0.3 * i, 1.4, 1.1)
-tick(35.2, 1500, 0.10, 0.0, 0.05)
-whoosh(36.6, 0.45, 500, 4500, 0.24, -0.4, 0.4, 68)
-# 36.9 - 41.2: groove returns lighter; the site comes alive: a rising run, then a lift
-click(38.22, 0.2)
-for i in range(6): pop(38.35 + i * 0.22, 600 + 60 * i, 0.06, -0.5 + 0.2 * i)
-for i in range(8): kick(37.2 + i * BEAT * 1.0, 0.18); hat(37.5 + i * BEAT, 0.04, 0.3)
-bass(hz("Bb1"), 37.2, 0.5); bass(hz("Eb2"), 38.4, 0.5); bass(hz("Bb1"), 39.6, 0.5)
-for i, nt in enumerate(["Eb5", "G5", "Bb5", "D6", "Eb6"]): pluck(hz(nt), 39.75 + i * 0.07, 0.07, -0.3 + 0.15 * i, 1.1, 1.1)
-swell(39.4, 0.7, 300, 7000, 0.20); pop(39.9, 1050, 0.12, 0.0)
-whoosh(40.95, 0.45, 500, 4500, 0.24, -0.4, 0.4, 69)
-# 41.2 - 50: brand end card. a different ending: the groove stops, one warm chord and a soft mallet motif, then a clean fade (no boom, no sparkle cluster)
-pad(FR("cm"), 41.0, 50.0, 1.2, 2.6, 0.40, bright=(0.4, 0.8), K=5, seed=80)
-stab([hz(n) for n in ["C4", "Eb4", "G4", "Bb4"]], 41.3, 0.12, 2.2); bass(hz("C2"), 41.3, 2.0, 0.3)
-for i, nt in enumerate(["Bb4", "Eb5", "G5", "Bb5"]): pluck(hz(nt), 42.2 + i * 0.5, 0.08, -0.3 + 0.2 * i, 1.6, 1.2)
-for i in range(6): tick(42.8 + i * 0.36, 1700 + 100 * i, 0.04, -0.4 + 0.16 * i, 0.02, 0.3)
-for i in range(16): tick(46.15 + i * 0.07, 2000 + rng.integers(-200, 200), 0.05, 0.0, 0.02, 0.3)
-click(47.6, 0.2); stab([hz(n) for n in ["C4", "G4", "Bb4", "D5", "Eb5"]], 47.62, 0.12, 2.6); bass(hz("C2"), 47.62, 2.4, 0.3)
-for i, nt in enumerate(["G5", "Bb5", "D6", "Eb6"]): pluck(hz(nt), 47.9 + i * 0.22, 0.06 - 0.01 * i, -0.3 + 0.2 * i, 2.0, 1.3)
+swell(26.4, 0.8, 300, 7000, 0.20); whoosh(26.95, 0.4, 500, 4500, 0.24, -0.4, 0.4, 67)
+# 27.3 - 31.85: the groove drops out; two clicks; a held beat; a warm chord when the name is his
+click(27.75, 0.2); pop(27.9, 940, 0.12, 0.3); click(28.52, 0.2); pop(28.65, 1100, 0.12, -0.2)
+whoosh(29.7, 0.5, 7000, 500, 0.14, 0.3, -0.3, 68)
+kick(30.3, 0.5); pad(FR("eb"), 30.2, 34.4, 0.3, 1.6, 0.42, bright=(0.5, 0.8), K=4, seed=73)
+stab([hz(n) for n in ["Eb4", "G4", "Bb4", "D5"]], 30.35, 0.10, 1.6)
+for i, nt in enumerate(["G5", "Bb5", "D6"]): pluck(hz(nt), 30.6 + i * 0.16, 0.07, -0.3 + 0.3 * i, 1.4, 1.1)
+tick(30.95, 1500, 0.10, 0.0, 0.05)
+whoosh(31.55, 0.4, 500, 4500, 0.24, -0.4, 0.4, 69)
+# 31.85 - 34.85: groove returns lighter; the site comes alive: a rising run, then a lift
+click(32.6, 0.2)
+for i in range(6): pop(32.75 + i * 0.2, 600 + 60 * i, 0.06, -0.5 + 0.2 * i)
+for i in range(5): kick(32.0 + i * BEAT, 0.18); hat(32.3 + i * BEAT, 0.04, 0.3)
+bass(hz("Bb1"), 32.0, 0.5); bass(hz("Eb2"), 33.2, 0.5); bass(hz("Bb1"), 34.4, 0.4)
+swell(33.8, 0.6, 300, 7000, 0.18)
+for i, nt in enumerate(["Eb5", "G5", "Bb5", "D6", "Eb6"]): pluck(hz(nt), 34.3 + i * 0.07, 0.07, -0.3 + 0.15 * i, 1.1, 1.1)
+pop(34.3, 1050, 0.12, 0.0); whoosh(34.55, 0.4, 500, 4500, 0.24, -0.4, 0.4, 70)
+# 34.85 - 43: brand end card, a different ending: the groove stops, one warm chord and a soft mallet motif, then a clean fade (no boom, no sparkle cluster)
+pad(FR("cm"), 34.7, 43.0, 1.0, 2.6, 0.40, bright=(0.4, 0.8), K=5, seed=80)
+stab([hz(n) for n in ["C4", "Eb4", "G4", "Bb4"]], 34.95, 0.12, 2.2); bass(hz("C2"), 34.95, 2.0, 0.3)
+for i, nt in enumerate(["Bb4", "Eb5", "G5", "Bb5"]): pluck(hz(nt), 36.0 + i * 0.5, 0.08, -0.3 + 0.2 * i, 1.6, 1.2)
+for i in range(6): tick(36.3 + i * 0.36, 1700 + 100 * i, 0.04, -0.4 + 0.16 * i, 0.02, 0.3)
+for i in range(16): tick(38.85 + i * 0.07, 2000 + rng.integers(-200, 200), 0.05, 0.0, 0.02, 0.3)
+click(40.2, 0.2); stab([hz(n) for n in ["C4", "G4", "Bb4", "D5", "Eb5"]], 40.22, 0.12, 2.6); bass(hz("C2"), 40.22, 2.4, 0.3)
+for i, nt in enumerate(["G5", "Bb5", "D6", "Eb6"]): pluck(hz(nt), 40.5 + i * 0.22, 0.06 - 0.01 * i, -0.3 + 0.2 * i, 2.0, 1.3)
 
 # ---------------------------------------------------------------- reverb (long, dark, stereo-decorrelated)
 def make_ir(T60=4.2, pre=0.03, lp=5200, seed=5):
@@ -219,7 +220,7 @@ import os, json
 voice = np.zeros(N, np.float32)
 if os.path.exists("assets/audio/voice.mp3"):
     v = np.frombuffer(subprocess.run(["ffmpeg", "-v", "error", "-i", "assets/audio/voice.mp3", "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"], capture_output=True).stdout, np.float32)
-    voice[: min(N, len(v))] = v[:N]
+    o = int(4.5 * SR); voice[o: min(N, o + len(v))] = v[: N - o]
 else:   # no voice yet: duck against the estimated word windows
     for w in json.load(open("data/words.json"))["words"]: voice[int(w["start"] * SR): int(w["end"] * SR)] = 0.08
 venv = smooth_env(np.abs(voice), 60); venv = np.clip(venv / 0.045, 0, 1)
@@ -231,7 +232,7 @@ gap = env([(0, 1), (99, 1)])
 mix = (music * duck + fx * duck_fx * 1.0 + wet * duck * 0.9 * 0.9) 
 mix[:, :] *= gap
 mix += vwet * 1.0
-fade = env([(0, 0), (1.2, 1), (48.6, 1), (49.95, 0)]); mix *= fade
+fade = env([(0, 0), (1.0, 1), (41.6, 1), (42.95, 0)]); mix *= fade
 # gentle mastering: tilt-free soft clip, then true-peak-safe gain
 mix = np.tanh(mix * 1.15) / np.tanh(1.15)
 rms = np.sqrt((mix ** 2).mean()); mix *= (10 ** (-26.0 / 20)) / rms

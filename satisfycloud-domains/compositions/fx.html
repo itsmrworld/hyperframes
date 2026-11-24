@@ -15,8 +15,8 @@
       function draw() { var s = (Math.floor(P.f * 24) * 2654435761) >>> 0, d = img.data;
         for (var i = 0; i < d.length; i += 4) { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; var v = s & 255; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
         x.putImageData(img, 0, 0); }
-      tl.fromTo(P, { f: 0 }, { f: 50, duration: 50, ease: "none", onUpdate: draw }, 0);
-      tl.to("#fx-vig", { opacity: 0.5, duration: 1.4, ease: "power2.inOut" }, 40.6);
+      tl.fromTo(P, { f: 0 }, { f: 43, duration: 43, ease: "none", onUpdate: draw }, 0);
+      tl.to("#fx-vig", { opacity: 0.5, duration: 1.4, ease: "power2.inOut" }, 34.5);
       window.__timelines["fx"] = tl;
     })();
   </script>

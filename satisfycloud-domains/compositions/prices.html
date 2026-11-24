@@ -64,7 +64,7 @@
       var tl = gsap.timeline({ paused: true });
       var $ = function (s) { return document.querySelector(s); };
       // local clock: scene starts 17.9 . cues: shop 0.0 · online 3.3 · xyz 5.9 · org 8.4 · com 11.1 . end 14.1
-      var K = [["a", 0.25, 1.12], ["b", 3.35, 1.46], ["c", 5.95, 2.55], ["d", 8.45, 8.49], ["e", 11.15, 11.26]];
+      var K = [["a", 0.12, 1.12], ["b", 2.4, 1.46], ["c", 4.5, 2.55], ["d", 7.1, 8.49], ["e", 9.05, 11.26]];
       tl.fromTo("#pr-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, 0);
       tl.fromTo(["#pr-eyebrow", "#pr-h"], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.1 }, 0.05);
       tl.fromTo("#pr-table", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.7, ease: "power4.out" }, 0.05);
@@ -80,7 +80,7 @@
         var o = { v: 0 }, el = $("#pv-" + id);
         tl.fromTo(o, { v: 0 }, { v: price, duration: 1.1, ease: "power3.out", immediateRender: false, onUpdate: function () { el.textContent = o.v.toFixed(2); } }, t + 0.15);
       });
-      tl.to("#pr-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power4.in" }, 13.78);
+      tl.to("#pr-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power4.in" }, 10.88);
       window.__timelines["prices"] = tl;
     })();
   </script>

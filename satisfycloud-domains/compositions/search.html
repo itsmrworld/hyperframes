@@ -70,21 +70,23 @@
       tl.fromTo(["#se-h1", "#se-sub"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.1);
       tl.fromTo(["#se-nav", "#se-bar", "#se-tog"], { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", stagger: 0.08 }, 0.15);
       // cursor enters from off-screen, clicks the bar
-      tl.fromTo("#se-cur", { x: FW + 40, y: FH - 100, opacity: 0, scale: 1 }, { x: bx + bw * 0.45, y: by + bh * 0.4, opacity: 1, duration: 0.8, ease: "power3.out", immediateRender: false }, 0.55);
-      tl.to("#se-cur", { scale: 0.85, duration: 0.07, ease: "power2.in" }, 1.38);
-      tl.to("#se-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 1.45);
-      tl.to("#se-bar", { boxShadow: "0 0 0 3px rgba(11,100,248,.8), 0 0 50px rgba(11,100,248,.5)", duration: 0.2 }, 1.4);
+      tl.fromTo("#se-cur", { x: FW + 40, y: FH - 100, opacity: 0, scale: 1 }, { x: bx + bw * 0.45, y: by + bh * 0.4, opacity: 1, duration: 0.6, ease: "power3.out", immediateRender: false }, 0.3);
+      tl.to("#se-cur", { scale: 0.85, duration: 0.07, ease: "power2.in" }, 0.95);
+      tl.to("#se-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 1.02);
+      tl.to("#se-bar", { boxShadow: "0 0 0 3px rgba(11,100,248,.8), 0 0 50px rgba(11,100,248,.5)", duration: 0.2 }, 0.97);
       // camera dives into the search bar (push)
-      tl.fromTo(cam, { x: 0, y: 0, scale: 1 }, { x: FW / 2 - fx * S, y: FH * 0.47 - fy * S, scale: S, duration: 0.9, ease: "power3.inOut", immediateRender: false }, 1.5);
-      tl.to("#se-cur", { opacity: 0, duration: 0.2 }, 1.9);
-      tl.to("#se-ph", { opacity: 0, duration: 0.1 }, 2.3);
-      var o = { n: 0 }, txt = "yourbrand"; tl.fromTo(o, { n: 0 }, { n: txt.length, duration: 0.85, ease: "none", immediateRender: false, onUpdate: function () { $("#se-q").textContent = txt.slice(0, Math.round(o.n)); } }, 2.4);
-      tl.to("#se-tog", { opacity: 0, duration: 0.2, ease: "power2.in" }, 3.0);
-      tl.fromTo("#se-drop", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.2);
-      tl.fromTo("#se-r1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.55);
-      tl.fromTo("#se-r2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.7);
-      tl.fromTo("#se-r3", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.85);
-      tl.to("#se-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power4.in" }, 4.98);
+      tl.fromTo(cam, { x: 0, y: 0, scale: 1 }, { x: FW / 2 - fx * S, y: FH * 0.43 - fy * S, scale: S, duration: 0.8, ease: "power3.inOut", immediateRender: false }, 1.05);
+      tl.to("#se-cur", { opacity: 0, duration: 0.2 }, 1.4);
+      tl.to("#se-ph", { opacity: 0, duration: 0.1 }, 1.4);
+      var o = { n: 0 }, txt = "yourbrand"; tl.fromTo(o, { n: 0 }, { n: txt.length, duration: 0.65, ease: "none", immediateRender: false, onUpdate: function () { $("#se-q").textContent = txt.slice(0, Math.round(o.n)); } }, 1.5);
+      tl.to("#se-tog", { opacity: 0, duration: 0.2, ease: "power2.in" }, 2.2);
+      tl.fromTo("#se-drop", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.3);
+      tl.fromTo("#se-r1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.6);
+      tl.fromTo("#se-r2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.75);
+      tl.fromTo("#se-r3", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 2.9);
+      tl.to("#se-live i", { boxShadow: "0 0 30px #34d399", scale: 1.5, duration: 0.3, ease: "power2.out" }, 3.75);
+      tl.to("#se-live", { backgroundColor: "rgba(52,211,153,.2)", borderColor: "rgba(52,211,153,.6)", duration: 0.3 }, 3.75);
+      tl.to("#se-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power4.in" }, 4.28);
       window.__timelines["search"] = tl;
     })();
   </script>

@@ -15,7 +15,7 @@ for ln in lines:
             parts2=p[:5]; chunks.append(parts2); p=p[5:]
         chunks.append(p)
 # drop captions that the CTA visuals already carry
-chunks=[c for c in chunks if c[0]["start"]<45.9]
+chunks=[c for c in chunks if c[0]["start"]<34.8]
 out=[];js=[]
 for i,c in enumerate(chunks):
     s=c[0]["start"]-0.04; e=c[-1]["end"]+0.22

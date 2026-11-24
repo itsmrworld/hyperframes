@@ -78,16 +78,16 @@
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         if (S.flash > 0.001) { ctx.fillStyle = "rgba(255,255,255," + S.flash + ")"; ctx.fillRect(0, 0, W, H); }
       }
-      var D = 50, tl = gsap.timeline({ paused: true });
+      var D = 43, tl = gsap.timeline({ paused: true });
       var F = function (from, to, dur, ease, at) { var tw = { duration: dur, ease: ease || "none", immediateRender: false }; for (var k in to) tw[k] = to[k]; tl.fromTo(S, from, tw, at); };
       F({ t: 0 }, { t: D }, D, "none", 0);
-      F({ zoom: 0 }, { zoom: 0.1 }, 12.6, "power1.inOut", 0);
-      F({ p: 0 }, { p: 1 }, 2.2, "sine.inOut", 5.5);
-      F({ zoom: 0.1 }, { zoom: 0 }, 0.6, "power2.inOut", 12.6);
-      F({ p: 1 }, { p: 2 }, 1.2, "sine.inOut", 12.4);
-      F({ tint: 0 }, { tint: 1 }, 14, "sine.inOut", 14);
-      F({ tint: 1 }, { tint: 0.4 }, 12, "sine.inOut", 28);
-      F({ p: 2 }, { p: 3 }, 1.6, "power2.inOut", 40.6);
+      F({ zoom: 0 }, { zoom: 0.1 }, 11.3, "power1.inOut", 0);
+      F({ p: 0 }, { p: 1 }, 2.2, "sine.inOut", 4.0);
+      F({ zoom: 0.1 }, { zoom: 0 }, 0.6, "power2.inOut", 11.3);
+      F({ p: 1 }, { p: 2 }, 1.2, "sine.inOut", 11.2);
+      F({ tint: 0 }, { tint: 1 }, 10, "sine.inOut", 12);
+      F({ tint: 1 }, { tint: 0.4 }, 8, "sine.inOut", 22);
+      F({ p: 2 }, { p: 3 }, 1.6, "power2.inOut", 34.5);
       tl.eventCallback("onUpdate", draw);
       window.__timelines["bg"] = tl;
     })();

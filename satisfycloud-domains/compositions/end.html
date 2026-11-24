@@ -37,17 +37,17 @@
       var lw = $("#en-lock").offsetWidth || 860, shift = lw * 0.5 - lw * 0.2545 * 0.5;
       tl.fromTo("#en-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, 0);
       tl.fromTo("#en-bloom", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 2.0, ease: "power3.out" }, 0.1);
-      tl.fromTo("#en-mark", { opacity: 0, scale: 0.6, x: shift, filter: "blur(12px)" }, { opacity: 1, scale: 1, x: shift, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, 0.2);
-      tl.to("#en-mark", { x: 0, duration: 0.9, ease: "power3.inOut" }, 0.85);
-      tl.fromTo("#en-word", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "power3.inOut" }, 0.85);
-      tl.fromTo("#en-h .w", { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out", stagger: 0.36 }, 1.6);
-      tl.fromTo("#en-url", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 4.6);
-      var o = { n: 0 }, txt = "satisfycloud.com"; tl.fromTo(o, { n: 0 }, { n: txt.length, duration: 1.1, ease: "none", immediateRender: false, onUpdate: function () { $("#en-txt").textContent = txt.slice(0, Math.round(o.n)); } }, 4.95);
-      tl.fromTo("#en-cur", { x: 1960, y: 1020, opacity: 0, scale: 1 }, { x: gx - 10, y: gy - 6, opacity: 1, duration: 0.9, ease: "power3.out", immediateRender: false }, 5.4);
-      tl.to("#en-cur", { scale: 0.86, duration: 0.07, ease: "power2.in" }, 6.4);
-      tl.to("#en-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 6.47);
-      tl.to("#en-go", { scale: 0.94, duration: 0.07 }, 6.4); tl.to("#en-go", { scale: 1, duration: 0.2 }, 6.47);
-      tl.fromTo("#en-flash", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.14, duration: 0.7, ease: "power2.out", immediateRender: false }, 6.4);
+      tl.fromTo("#en-mark", { opacity: 0, scale: 0.6, x: shift, filter: "blur(12px)" }, { opacity: 1, scale: 1, x: shift, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, 0.05);
+      tl.to("#en-mark", { x: 0, duration: 0.8, ease: "power3.inOut" }, 0.7);
+      tl.fromTo("#en-word", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.8, ease: "power3.inOut" }, 0.7);
+      tl.fromTo("#en-h .w", { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out", stagger: 0.36 }, 1.38);
+      tl.fromTo("#en-url", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 3.7);
+      var o = { n: 0 }, txt = "satisfycloud.com"; tl.fromTo(o, { n: 0 }, { n: txt.length, duration: 1.1, ease: "none", immediateRender: false, onUpdate: function () { $("#en-txt").textContent = txt.slice(0, Math.round(o.n)); } }, 4.05);
+      tl.fromTo("#en-cur", { x: 1960, y: 1020, opacity: 0, scale: 1 }, { x: gx - 10, y: gy - 6, opacity: 1, duration: 0.9, ease: "power3.out", immediateRender: false }, 4.3);
+      tl.to("#en-cur", { scale: 0.86, duration: 0.07, ease: "power2.in" }, 5.35);
+      tl.to("#en-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 5.42);
+      tl.to("#en-go", { scale: 0.94, duration: 0.07 }, 5.35); tl.to("#en-go", { scale: 1, duration: 0.2 }, 5.42);
+      tl.fromTo("#en-flash", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.14, duration: 0.7, ease: "power2.out", immediateRender: false }, 5.35);
       window.__timelines["end"] = tl;
     })();
   </script>
