@@ -1,0 +1,71 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #eef2fb; }
+    #lv-stage { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #lv-art { position: absolute; right: 60px; top: 90px; width: 560px; height: 800px; opacity: 0;
+      -webkit-mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); }
+    #lv-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #lv-cta { position: absolute; left: 130px; top: 250px; width: 560px; height: 520px; border-radius: 34px; padding: 40px; opacity: 0;
+      background: linear-gradient(160deg, rgba(14,40,140,.9), rgba(10,18,50,.9)); border: 1px solid rgba(120,160,255,.35); box-shadow: 0 50px 110px rgba(0,10,70,.6); }
+    #lv-cta h3 { font: 700 54px/1.08 "Inter"; letter-spacing: -.03em; } #lv-cta p { margin-top: 20px; font: 400 27px/1.45 "Inter"; color: rgba(215,228,255,.8); }
+    #lv-btn { position: absolute; left: 40px; bottom: 40px; padding: 18px 38px; border-radius: 34px; background: #0B64F8; font: 600 27px "Inter"; box-shadow: 0 0 34px rgba(11,100,248,.7); }
+    #lv-win { position: absolute; left: 760px; top: 190px; width: 960px; height: 640px; border-radius: 28px; opacity: 0; overflow: hidden;
+      background: #0d1018; border: 1px solid rgba(255,255,255,.16); box-shadow: 0 60px 140px rgba(0,0,40,.7), 0 0 0 1px rgba(11,100,248,.2); }
+    #lv-top { height: 76px; display: flex; align-items: center; gap: 12px; padding: 0 24px; background: #151a26; border-bottom: 1px solid rgba(255,255,255,.08); }
+    #lv-top i { width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.2); }
+    #lv-url { margin-left: 18px; flex: 1; height: 46px; border-radius: 24px; background: rgba(255,255,255,.06); display: flex; align-items: center; padding: 0 22px; font: 500 25px "Inter"; color: #fff; gap: 12px; }
+    #lv-url em { font-style: normal; color: #5b8cff; }
+    #lv-live { padding: 9px 20px; border-radius: 22px; background: rgba(52,211,153,.18); color: #6ee7b7; font: 700 22px "JetBrains Mono", monospace; letter-spacing: .12em; opacity: 0; box-shadow: 0 0 40px rgba(52,211,153,.5); }
+    #lv-pg { position: relative; padding: 34px; height: 564px; }
+    .lv-sk { position: absolute; border-radius: 18px; background: linear-gradient(135deg, rgba(11,100,248,.5), rgba(91,75,255,.3)); opacity: 0; }
+    .lv-sk.t { background: rgba(255,255,255,.14); }
+    #lv-ring { position: absolute; right: 40px; bottom: 36px; width: 110px; height: 110px; opacity: 0; }
+    #lv-cur { position: absolute; left: 0; top: 0; width: 84px; height: 84px; opacity: 0; z-index: 30; filter: drop-shadow(0 10px 16px rgba(0,0,10,.6)); }
+    @container (max-aspect-ratio: 1.2) {
+      #lv-art { right: -60px; top: 20px; width: 480px; height: 620px; } #lv-cta { left: 70px; top: 80px; width: 940px; height: 270px; padding: 30px 36px; } #lv-cta h3 { font-size: 46px; } #lv-cta p { font-size: 24px; margin-top: 12px; width: 560px; } #lv-btn { left: auto; right: 36px; bottom: 30px; padding: 16px 32px; }
+      #lv-win { left: 70px; top: 390px; width: 940px; height: 520px; } #lv-top { height: 66px; } #lv-pg { height: 452px; padding: 26px; }
+    }
+  </style>
+  <div id="root" data-composition-id="live" data-width="1920" data-height="1080">
+    <div id="lv-stage">
+      <div id="lv-art"><img src="assets/img/fig_arch.png" alt="" /></div>
+      <div id="lv-cta"><h3>Got your name?<br>Add hosting.</h3><p>Point your new domain at fast NVMe hosting and go live the same day.</p><span id="lv-btn">Choose hosting</span></div>
+      <div id="lv-win"><div id="lv-top"><i></i><i></i><i></i><div id="lv-url">🔒 yourbrand<em>.shop</em></div><span id="lv-live">● LIVE</span></div>
+        <div id="lv-pg">
+          <div class="lv-sk t" id="lv-k1" style="left:34px;top:34px;width:300px;height:30px"></div>
+          <div class="lv-sk" id="lv-k2" style="left:34px;top:90px;width:60%;height:170px"></div>
+          <div class="lv-sk t" id="lv-k3" style="left:34px;top:282px;width:44%;height:26px"></div>
+          <div class="lv-sk" id="lv-k4" style="left:34px;top:340px;width:29%;height:150px"></div>
+          <div class="lv-sk" id="lv-k5" style="left:calc(34px + 31.5%);top:340px;width:29%;height:150px"></div>
+          <div class="lv-sk" id="lv-k6" style="left:calc(34px + 63%);top:340px;width:29%;height:150px"></div>
+          <svg id="lv-ring" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="7"/><circle id="lv-rc" cx="50" cy="50" r="42" fill="none" stroke="#6ee7b7" stroke-width="7" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/></svg>
+        </div></div>
+      <svg id="lv-cur" viewBox="0 0 32 32"><path d="M5 2 L5 25 L11 19.5 L15 28.5 L19 26.8 L15 18 L23 18 Z" fill="#fff" stroke="#0B1220" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var $ = function (s) { return document.querySelector(s); };
+      var st = $("#lv-stage"), btn = $("#lv-btn");
+      var bx = $("#lv-cta").offsetLeft + btn.offsetLeft + btn.offsetWidth * 0.5, by = $("#lv-cta").offsetTop + btn.offsetTop + btn.offsetHeight * 0.4;
+      // local clock: scene starts 36.9 . "Then give it a home," 36.9 . "and go live the same day." 39.0 (2.1) . end 41.2 (4.3)
+      tl.fromTo("#lv-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, 0);
+      tl.fromTo("#lv-art", { opacity: 0, x: 40 }, { opacity: 0.85, x: 0, duration: 1.2, ease: "power3.out" }, 0.1);
+      tl.fromTo("#lv-cta", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.6, ease: "power4.out" }, 0.1);
+      tl.fromTo("#lv-win", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power4.out" }, 0.25);
+      tl.fromTo("#lv-cur", { x: 1960, y: 1000, opacity: 0, scale: 1 }, { x: bx - 8, y: by - 6, opacity: 1, duration: 0.7, ease: "power3.out", immediateRender: false }, 0.5);
+      tl.to("#lv-cur", { scale: 0.85, duration: 0.07, ease: "power2.in" }, 1.25);
+      tl.to("#lv-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 1.32);
+      tl.to("#lv-btn", { scale: 0.93, duration: 0.07 }, 1.25); tl.to("#lv-btn", { scale: 1, duration: 0.2 }, 1.32);
+      tl.to("#lv-cur", { opacity: 0, duration: 0.25 }, 1.5);
+      ["k1", "k2", "k3", "k4", "k5", "k6"].forEach(function (k, i) { tl.fromTo("#lv-" + k, { opacity: 0, y: 24, scaleX: 0.7, transformOrigin: "0 50%" }, { opacity: 1, y: 0, scaleX: 1, duration: 0.45, ease: "power3.out" }, 1.45 + i * 0.22); });
+      tl.fromTo("#lv-live", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 3.0);
+      tl.fromTo("#lv-ring", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 3.05);
+      tl.fromTo("#lv-rc", { strokeDashoffset: 264 }, { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 3.05);
+      tl.to("#lv-win", { boxShadow: "0 60px 140px rgba(0,0,40,.7), 0 0 90px rgba(52,211,153,.35)", duration: 0.5 }, 3.0);
+      tl.to("#lv-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.3, ease: "power4.in" }, 4.0);
+      window.__timelines["live"] = tl;
+    })();
+  </script>
+</template>

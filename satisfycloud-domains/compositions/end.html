@@ -1,0 +1,54 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; color: #fff; }
+    #en-stage { position: absolute; inset: 0; transform-origin: 50% 50%; --lw: 860px; }
+    #en-bloom { position: absolute; left: 50%; top: 50%; width: 1700px; height: 1700px; margin: -850px 0 0 -850px; border-radius: 50%; background: radial-gradient(closest-side, rgba(160,200,255,.4), rgba(11,100,248,.12) 55%, rgba(11,100,248,0) 100%); opacity: 0; }
+    #en-lock { position: absolute; left: 50%; top: 150px; width: var(--lw); height: calc(var(--lw) * .1554); margin-left: calc(var(--lw) * -.5); }
+    #en-mark { position: absolute; left: 0; top: 0; height: 100%; width: calc(var(--lw) * .2545); display: block; opacity: 0; }
+    #en-word { position: absolute; top: 0; left: calc(var(--lw) * .2746); height: 100%; width: calc(var(--lw) * .7254); display: block; clip-path: inset(0 100% 0 0); }
+    #en-h { position: absolute; left: 0; right: 0; top: 340px; text-align: center; font: 700 112px/1.02 "Outfit"; letter-spacing: -.04em; }
+    #en-h .w { display: inline-block; opacity: 0; }
+    #en-h .b { color: #bcd5ff; }
+    #en-url { position: absolute; left: 50%; top: 720px; width: 940px; height: 120px; margin-left: -470px; border-radius: 60px; display: flex; align-items: center; padding: 0 18px 0 48px; gap: 16px; opacity: 0;
+      background: linear-gradient(150deg, rgba(255,255,255,.2), rgba(255,255,255,.07)); border: 1px solid rgba(255,255,255,.32); backdrop-filter: blur(22px); box-shadow: 0 30px 90px rgba(0,20,120,.5), inset 0 2px 0 rgba(255,255,255,.4); font: 500 52px "Outfit"; letter-spacing: -.01em; }
+    #en-url svg { width: 44px; height: 44px; opacity: .8; flex: none; }
+    #en-go { margin-left: auto; height: 86px; padding: 0 44px; border-radius: 44px; background: #fff; color: #0B64F8; display: flex; align-items: center; font: 700 32px "Outfit"; box-shadow: 0 0 50px rgba(255,255,255,.45); }
+    #en-flash { position: absolute; left: 50%; top: 720px; width: 940px; height: 120px; margin-left: -470px; border-radius: 60px; box-shadow: 0 0 0 0 rgba(255,255,255,.7); opacity: 0; }
+    #en-cur { position: absolute; left: 0; top: 0; width: 96px; height: 96px; opacity: 0; filter: drop-shadow(0 12px 18px rgba(0,20,120,.5)); }
+    @container (max-aspect-ratio: 1.2) { #en-stage { --lw: 760px; } #en-lock { top: 120px; } #en-h { top: 270px; font-size: 94px; padding: 0 40px; } #en-url { top: 700px; width: 900px; margin-left: -450px; height: 108px; font-size: 44px; } #en-flash { top: 700px; width: 900px; margin-left: -450px; height: 108px; } #en-go { height: 76px; font-size: 28px; padding: 0 34px; } }
+  </style>
+  <div id="root" data-composition-id="end" data-width="1920" data-height="1080">
+    <div id="en-stage">
+      <div id="en-bloom"></div>
+      <div id="en-lock"><img id="en-mark" src="assets/logo/mark_white.png" alt="SatisfyCloud" /><img id="en-word" src="assets/logo/word_white.png" alt="" /></div>
+      <div id="en-h"><span class="w">Claim</span> <span class="w">the</span> <span class="w">name</span><br><span class="w">your</span> <span class="w">brand</span> <span class="w b">deserves.</span></div>
+      <div id="en-flash"></div>
+      <div id="en-url"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span id="en-txt"></span><span id="en-go">Search</span></div>
+      <svg id="en-cur" viewBox="0 0 32 32"><path d="M5 2 L5 25 L11 19.5 L15 28.5 L19 26.8 L15 18 L23 18 Z" fill="#fff" stroke="#0B1220" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var $ = function (s) { return document.querySelector(s); };
+      var url = $("#en-url"), go = $("#en-go");
+      var gx = url.offsetLeft + go.offsetLeft + go.offsetWidth * 0.5, gy = url.offsetTop + go.offsetTop + go.offsetHeight * 0.45;
+      // local clock: scene starts 41.2 . "SatisfyCloud." 41.4 (0.2) . "Claim the name your brand deserves." 42.8 (1.6) . url typed 46.0 (4.8) . end 50 (8.8)
+      var lw = $("#en-lock").offsetWidth || 860, shift = lw * 0.5 - lw * 0.2545 * 0.5;
+      tl.fromTo("#en-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.5, ease: "power4.out" }, 0);
+      tl.fromTo("#en-bloom", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 2.0, ease: "power3.out" }, 0.1);
+      tl.fromTo("#en-mark", { opacity: 0, scale: 0.6, x: shift, filter: "blur(12px)" }, { opacity: 1, scale: 1, x: shift, filter: "blur(0px)", duration: 0.55, ease: "power4.out" }, 0.2);
+      tl.to("#en-mark", { x: 0, duration: 0.9, ease: "power3.inOut" }, 0.85);
+      tl.fromTo("#en-word", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "power3.inOut" }, 0.85);
+      tl.fromTo("#en-h .w", { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power4.out", stagger: 0.36 }, 1.6);
+      tl.fromTo("#en-url", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 4.6);
+      var o = { n: 0 }, txt = "satisfycloud.com"; tl.fromTo(o, { n: 0 }, { n: txt.length, duration: 1.1, ease: "none", immediateRender: false, onUpdate: function () { $("#en-txt").textContent = txt.slice(0, Math.round(o.n)); } }, 4.95);
+      tl.fromTo("#en-cur", { x: 1960, y: 1020, opacity: 0, scale: 1 }, { x: gx - 10, y: gy - 6, opacity: 1, duration: 0.9, ease: "power3.out", immediateRender: false }, 5.4);
+      tl.to("#en-cur", { scale: 0.86, duration: 0.07, ease: "power2.in" }, 6.4);
+      tl.to("#en-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 6.47);
+      tl.to("#en-go", { scale: 0.94, duration: 0.07 }, 6.4); tl.to("#en-go", { scale: 1, duration: 0.2 }, 6.47);
+      tl.fromTo("#en-flash", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.14, duration: 0.7, ease: "power2.out", immediateRender: false }, 6.4);
+      window.__timelines["end"] = tl;
+    })();
+  </script>
+</template>

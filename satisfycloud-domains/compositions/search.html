@@ -1,0 +1,91 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #eef2fb; }
+    #se-stage { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #se-cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+    #se-nav { position: absolute; left: 130px; right: 130px; top: 40px; height: 84px; display: flex; align-items: center; gap: 44px; font: 500 24px "Inter"; color: rgba(235,240,252,.88); }
+    #se-nav .lg { display: flex; align-items: center; gap: 14px; font: 600 32px "Outfit"; color: #fff; margin-right: 24px; }
+    #se-nav .lg img { height: 40px; }
+    #se-nav .gs { margin-left: auto; padding: 16px 34px; border-radius: 40px; background: #0B64F8; color: #fff; font: 600 22px "Inter"; box-shadow: 0 0 30px rgba(11,100,248,.5); }
+    #se-h1 { position: absolute; left: 130px; top: 230px; font: 800 100px/1.04 "Inter"; letter-spacing: -.035em; color: #fff; }
+    #se-h1 b { color: #3d82ff; font-weight: 800; }
+    #se-sub { position: absolute; left: 130px; top: 470px; width: 800px; font: 400 30px/1.5 "Inter"; color: rgba(205,214,235,.78); }
+    #se-bar { position: absolute; left: 130px; top: 600px; width: 860px; height: 92px; border-radius: 46px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); display: flex; align-items: center; padding: 0 12px 0 34px; gap: 20px; box-shadow: inset 0 1.5px 0 rgba(255,255,255,.18); }
+    #se-bar svg { width: 34px; height: 34px; opacity: .65; flex: none; }
+    #se-q { font: 500 34px "Inter"; color: #fff; white-space: pre; }
+    #se-ph { position: absolute; left: 90px; font: 500 32px "Inter"; color: rgba(255,255,255,.42); }
+    #se-caret { width: 3px; height: 40px; background: #5b8cff; margin-left: -14px; border-radius: 2px; }
+    #se-btn { margin-left: auto; padding: 0 46px; height: 68px; border-radius: 34px; background: #0B64F8; display: grid; place-items: center; font: 600 26px "Inter"; color: #fff; box-shadow: 0 0 30px rgba(11,100,248,.6); }
+    #se-tog { position: absolute; left: 130px; top: 724px; display: flex; gap: 20px; align-items: center; font: 500 22px "Inter"; }
+    #se-tog .seg { display: inline-flex; padding: 5px; border-radius: 30px; background: rgba(255,255,255,.07); }
+    #se-tog .seg b { padding: 11px 26px; border-radius: 26px; color: rgba(255,255,255,.6); font-weight: 600; }
+    #se-tog .seg b.on { background: #0B64F8; color: #fff; }
+    #se-pic { position: absolute; left: 1090px; top: 150px; width: 700px; height: 920px; opacity: 0;
+      -webkit-mask-image: radial-gradient(closest-side at 55% 50%, #000 52%, transparent 100%); mask-image: radial-gradient(closest-side at 55% 50%, #000 52%, transparent 100%); }
+    #se-pic img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+    #se-drop { position: absolute; left: 130px; top: 712px; width: 860px; border-radius: 30px; padding: 22px; background: linear-gradient(160deg, rgba(20,26,44,.96), rgba(12,16,28,.96)); border: 1px solid rgba(255,255,255,.14); box-shadow: 0 50px 100px rgba(0,0,0,.6), 0 0 0 1px rgba(11,100,248,.18); opacity: 0; }
+    #se-live { display: flex; align-items: center; gap: 14px; height: 56px; padding: 0 20px; border-radius: 18px; background: rgba(11,100,248,.14); border: 1px solid rgba(11,100,248,.3); font: 600 24px "Inter"; color: #cfe0ff; }
+    #se-live i { width: 12px; height: 12px; border-radius: 50%; background: #34d399; box-shadow: 0 0 14px #34d399; }
+    .se-r { margin-top: 12px; height: 84px; border-radius: 20px; display: flex; align-items: center; gap: 16px; padding: 0 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); font: 600 32px "Inter"; opacity: 0; }
+    .se-r em { font-style: normal; color: #5b8cff; }
+    .se-r .ok { margin-left: 6px; padding: 8px 16px; border-radius: 20px; background: rgba(52,211,153,.14); color: #6ee7b7; font: 600 20px "Inter"; letter-spacing: .04em; }
+    .se-r .add { margin-left: auto; padding: 14px 28px; border-radius: 26px; background: #0B64F8; font: 600 23px "Inter"; color: #fff; }
+    #se-cur { position: absolute; left: 0; top: 0; width: 84px; height: 84px; opacity: 0; z-index: 30; filter: drop-shadow(0 10px 16px rgba(0,0,10,.6)); }
+    @container (max-aspect-ratio: 1.2) {
+      #se-cam { width: 1080px; height: 1080px; }
+      #se-nav { left: 60px; right: 60px; top: 30px; gap: 22px; font-size: 0; } #se-nav .lg { font-size: 30px; } #se-nav .mi { display: none; } #se-nav .gs { font-size: 20px; }
+      #se-h1 { left: 60px; top: 190px; font-size: 80px; } #se-sub { left: 60px; top: 410px; width: 880px; font-size: 28px; }
+      #se-bar { left: 60px; top: 560px; width: 960px; } #se-tog { left: 60px; top: 684px; }
+      #se-pic { left: 560px; top: 20px; width: 560px; height: 520px; opacity: 0; } #se-drop { left: 60px; top: 672px; width: 960px; }
+    }
+  </style>
+  <div id="root" data-composition-id="search" data-width="1920" data-height="1080">
+    <div id="se-stage">
+      <div id="se-cam">
+        <div id="se-pic"><img src="assets/img/hero_chrome.png" alt="" /></div>
+        <div id="se-nav"><span class="lg"><img src="assets/logo/mark_white.png" alt="" />SatisfyCloud</span><span class="mi">Hosting ⌄</span><span class="mi">Domain ⌄</span><span class="mi">Offers</span><span class="mi">Support ⌄</span><span class="mi">Company ⌄</span><span class="gs">Get Started</span></div>
+        <div id="se-h1">The Ultimate <b>Hosting</b><br>Destination for You</div>
+        <div id="se-sub">Best hosting at the best price! 99.9% uptime, high-speed SSD servers, and free top-tier security.</div>
+        <div id="se-bar"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span id="se-ph">Type a name you have in mind...</span><span id="se-q"></span><i id="se-caret"></i><span id="se-btn">Search</span></div>
+        <div id="se-tog"><span class="seg"><b class="on">Register</b><b>Transfer</b></span><span>AI ideas</span></div>
+        <div id="se-drop"><div id="se-live"><i></i>Checking your name live</div>
+          <div class="se-r" id="se-r1"><span>yourbrand<em>.shop</em></span><span class="ok">AVAILABLE</span><span class="add">Add to cart</span></div>
+          <div class="se-r" id="se-r2"><span>yourbrand<em>.online</em></span><span class="ok">AVAILABLE</span></div>
+          <div class="se-r" id="se-r3"><span>yourbrand<em>.xyz</em></span><span class="ok">AVAILABLE</span></div></div>
+        <svg id="se-cur" viewBox="0 0 32 32"><path d="M5 2 L5 25 L11 19.5 L15 28.5 L19 26.8 L15 18 L23 18 Z" fill="#fff" stroke="#0B1220" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var $ = function (s) { return document.querySelector(s); };
+      var root = $("#root"), FW = root.getAttribute("data-width") * 1, FH = root.getAttribute("data-height") * 1;
+      var cam = $("#se-cam"), bar = $("#se-bar"), drop = $("#se-drop");
+      var bx = bar.offsetLeft, by = bar.offsetTop, bw = bar.offsetWidth, bh = bar.offsetHeight, dbot = drop.offsetTop + 360;
+      var S = Math.min(2.1, (FW * 0.94) / bw, (FH * 0.72) / (dbot - by)), fx = bx + bw / 2, fy = (by + dbot) / 2 + 20;
+      // local clock: scene starts 12.6 . voice: "So you search." 13.1 (0.5) . "your name appears. Live." 14.9 (2.3)
+      tl.fromTo("#se-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, 0);
+      tl.fromTo("#se-pic", { opacity: 0, x: 40 }, { opacity: 0.95, x: 0, duration: 1.0, ease: "power3.out" }, 0.1);
+      tl.fromTo(["#se-h1", "#se-sub"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.12 }, 0.1);
+      tl.fromTo(["#se-nav", "#se-bar", "#se-tog"], { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", stagger: 0.08 }, 0.15);
+      // cursor enters from off-screen, clicks the bar
+      tl.fromTo("#se-cur", { x: FW + 40, y: FH - 100, opacity: 0, scale: 1 }, { x: bx + bw * 0.45, y: by + bh * 0.4, opacity: 1, duration: 0.8, ease: "power3.out", immediateRender: false }, 0.55);
+      tl.to("#se-cur", { scale: 0.85, duration: 0.07, ease: "power2.in" }, 1.38);
+      tl.to("#se-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 1.45);
+      tl.to("#se-bar", { boxShadow: "0 0 0 3px rgba(11,100,248,.8), 0 0 50px rgba(11,100,248,.5)", duration: 0.2 }, 1.4);
+      // camera dives into the search bar (push)
+      tl.fromTo(cam, { x: 0, y: 0, scale: 1 }, { x: FW / 2 - fx * S, y: FH * 0.47 - fy * S, scale: S, duration: 0.9, ease: "power3.inOut", immediateRender: false }, 1.5);
+      tl.to("#se-cur", { opacity: 0, duration: 0.2 }, 1.9);
+      tl.to("#se-ph", { opacity: 0, duration: 0.1 }, 2.3);
+      var o = { n: 0 }, txt = "yourbrand"; tl.fromTo(o, { n: 0 }, { n: txt.length, duration: 0.85, ease: "none", immediateRender: false, onUpdate: function () { $("#se-q").textContent = txt.slice(0, Math.round(o.n)); } }, 2.4);
+      tl.to("#se-tog", { opacity: 0, duration: 0.2, ease: "power2.in" }, 3.0);
+      tl.fromTo("#se-drop", { opacity: 0, y: -14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.2);
+      tl.fromTo("#se-r1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.55);
+      tl.fromTo("#se-r2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.7);
+      tl.fromTo("#se-r3", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 3.85);
+      tl.to("#se-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power4.in" }, 4.98);
+      window.__timelines["search"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,78 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #eef2fb; }
+    #co-stage { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #co-eye { position: absolute; left: 150px; top: 120px; font: 600 22px "JetBrains Mono", monospace; letter-spacing: .2em; color: #5b8cff; }
+    #co-h { position: absolute; left: 150px; top: 160px; font: 700 62px/1.05 "Inter"; letter-spacing: -.03em; }
+    #co-cart { position: absolute; right: 150px; top: 130px; width: 84px; height: 84px; border-radius: 26px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); display: grid; place-items: center; }
+    #co-cart svg { width: 42px; height: 42px; }
+    #co-badge { position: absolute; right: -10px; top: -10px; width: 36px; height: 36px; border-radius: 50%; background: #0B64F8; font: 700 22px "Inter"; display: grid; place-items: center; box-shadow: 0 0 24px rgba(11,100,248,.9); opacity: 0; }
+    .co-s { position: absolute; top: 330px; width: 520px; height: 400px; border-radius: 30px; padding: 34px; opacity: 0;
+      background: linear-gradient(160deg, rgba(22,28,46,.94), rgba(12,16,28,.94)); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 40px 100px rgba(0,0,0,.5); }
+    #co-s1 { left: 150px; } #co-s2 { left: 700px; } #co-s3 { left: 1250px; }
+    .co-n { width: 56px; height: 56px; border-radius: 50%; background: rgba(11,100,248,.25); color: #9cc0ff; font: 700 26px "Inter"; display: grid; place-items: center; }
+    .co-t { margin-top: 24px; font: 700 40px "Inter"; letter-spacing: -.02em; } .co-d { margin-top: 12px; font: 400 25px/1.45 "Inter"; color: rgba(200,212,238,.75); }
+    .co-b { position: absolute; left: 34px; bottom: 34px; padding: 16px 34px; border-radius: 30px; background: #0B64F8; font: 600 25px "Inter"; color: #fff; box-shadow: 0 0 30px rgba(11,100,248,.6); }
+    .co-ok { position: absolute; right: 30px; top: 30px; width: 46px; height: 46px; border-radius: 50%; background: rgba(52,211,153,.2); display: grid; place-items: center; opacity: 0; }
+    #co-own { position: absolute; left: 50%; top: 52%; width: 1000px; height: 440px; margin: -220px 0 0 -500px; border-radius: 40px; opacity: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center;
+      background: linear-gradient(160deg, rgba(14,40,140,.95), rgba(11,100,248,.6)); border: 1px solid rgba(170,200,255,.5); box-shadow: 0 0 120px rgba(11,100,248,.55), inset 0 2px 0 rgba(255,255,255,.35); }
+    #co-own .nm { font: 700 84px "Inter"; letter-spacing: -.035em; } #co-own .nm em { font-style: normal; color: #bcd5ff; }
+    #co-own .st { font: 600 26px "JetBrains Mono", monospace; letter-spacing: .18em; color: #d6e6ff; }
+    #co-own svg { width: 110px; height: 110px; }
+    #co-ring { position: absolute; left: 50%; top: 52%; width: 420px; height: 420px; margin: -210px 0 0 -210px; border-radius: 50%; border: 2px solid rgba(170,200,255,.8); opacity: 0; }
+    #co-cur { position: absolute; left: 0; top: 0; width: 84px; height: 84px; opacity: 0; z-index: 30; filter: drop-shadow(0 10px 16px rgba(0,0,10,.6)); }
+    @container (max-aspect-ratio: 1.2) {
+      #co-eye { left: 70px; top: 80px; } #co-h { left: 70px; top: 116px; font-size: 54px; } #co-cart { right: 70px; top: 90px; }
+      .co-s { left: 70px !important; width: 940px; height: 210px; padding: 26px 30px; } #co-s1 { top: 280px; } #co-s2 { top: 510px; } #co-s3 { top: 740px; }
+      .co-t { margin-top: 0; position: absolute; left: 120px; top: 26px; font-size: 36px; } .co-d { position: absolute; left: 120px; top: 80px; right: 220px; font-size: 22px; margin: 0; } .co-b { left: auto; right: 30px; bottom: 30px; top: auto; }
+      #co-own { width: 940px; margin-left: -470px; height: 460px; } #co-own .nm { font-size: 70px; }
+    }
+  </style>
+  <div id="root" data-composition-id="checkout" data-width="1920" data-height="1080">
+    <div id="co-stage">
+      <div id="co-eye">HOW IT WORKS</div><div id="co-h">Three steps.<br>One name.</div>
+      <div id="co-cart"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 10.2a1.5 1.5 0 0 0 1.5 1.1h8.1a1.5 1.5 0 0 0 1.5-1.1L20 8H6"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg><i id="co-badge">1</i></div>
+      <div class="co-s" id="co-s1"><div class="co-n">1</div><div class="co-t">Search</div><div class="co-d">Type the name you want and see which extensions are free.</div><span class="co-ok" id="co-k1"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#6ee7b7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span></div>
+      <div class="co-s" id="co-s2"><div class="co-n">2</div><div class="co-t">Add to cart</div><div class="co-d">Choose the years and any extras.</div><span class="co-b" id="co-b2">Add to cart</span><span class="co-ok" id="co-k2"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#6ee7b7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg></span></div>
+      <div class="co-s" id="co-s3"><div class="co-n">3</div><div class="co-t">Pay and manage</div><div class="co-d">After payment the domain appears in your dashboard.</div><span class="co-b" id="co-b3">Pay now</span></div>
+      <div id="co-ring"></div>
+      <div id="co-own"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="5"/><circle id="co-rc" cx="50" cy="50" r="42" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset="264" transform="rotate(-90 50 50)"/><path id="co-tk" d="M31 52l13 13 25-28" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="72" stroke-dashoffset="72"/></svg><div class="nm">yourbrand<em>.shop</em></div><div class="st">REGISTERED TO YOU</div></div>
+      <svg id="co-cur" viewBox="0 0 32 32"><path d="M5 2 L5 25 L11 19.5 L15 28.5 L19 26.8 L15 18 L23 18 Z" fill="#fff" stroke="#0B1220" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var $ = function (s) { return document.querySelector(s); };
+      var st = $("#co-stage");
+      function pos(el, f) { var x = 0, y = 0, n = el; while (n && n !== st) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; } return { x: x + el.offsetWidth * f[0], y: y + el.offsetHeight * f[1] }; }
+      // local clock: scene starts 32.0 . "Add to cart." 32.2 (0.2) . "Pay." 33.3 (1.3) . "The name is yours." 34.5 (2.5) . end 36.9 (4.9)
+      tl.fromTo("#co-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, 0);
+      tl.fromTo(["#co-eye", "#co-h", "#co-cart"], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out", stagger: 0.08 }, 0.05);
+      tl.fromTo(["#co-s1", "#co-s2", "#co-s3"], { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power4.out", stagger: 0.1 }, 0.1);
+      tl.fromTo("#co-k1", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 0.5);
+      var b2 = pos($("#co-b2"), [0.5, 0.45]), b3 = pos($("#co-b3"), [0.5, 0.45]);
+      tl.fromTo("#co-cur", { x: 1960, y: 1000, opacity: 0, scale: 1 }, { x: b2.x - 8, y: b2.y - 6, opacity: 1, duration: 0.5, ease: "power3.out", immediateRender: false }, 0.1);
+      tl.to("#co-cur", { scale: 0.85, duration: 0.07, ease: "power2.in" }, 0.62);
+      tl.to("#co-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 0.69);
+      tl.to("#co-s2", { borderColor: "rgba(70,130,255,.8)", boxShadow: "0 0 60px rgba(11,100,248,.4)", duration: 0.25 }, 0.62);
+      tl.to("#co-b2", { scale: 0.93, duration: 0.07 }, 0.62); tl.to("#co-b2", { scale: 1, duration: 0.2 }, 0.69);
+      tl.fromTo("#co-badge", { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 0.75);
+      tl.fromTo("#co-k2", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.6)" }, 0.9);
+      tl.to("#co-cur", { x: b3.x - 8, y: b3.y - 6, duration: 0.55, ease: "power3.inOut" }, 0.85);
+      tl.to("#co-cur", { scale: 0.85, duration: 0.07, ease: "power2.in" }, 1.5);
+      tl.to("#co-cur", { scale: 1, duration: 0.14, ease: "power2.out" }, 1.57);
+      tl.to("#co-s3", { borderColor: "rgba(70,130,255,.8)", boxShadow: "0 0 60px rgba(11,100,248,.4)", duration: 0.25 }, 1.5);
+      tl.to("#co-b3", { scale: 0.93, duration: 0.07 }, 1.5); tl.to("#co-b3", { scale: 1, duration: 0.2 }, 1.57);
+      tl.to("#co-cur", { opacity: 0, duration: 0.25 }, 1.8);
+      // stillness, then: the name is yours
+      tl.to(["#co-s1", "#co-s2", "#co-s3", "#co-eye", "#co-h"], { opacity: 0, scale: 0.9, filter: "blur(10px)", duration: 0.5, ease: "power3.in", stagger: 0.04 }, 2.3);
+      tl.fromTo("#co-own", { opacity: 0, scale: 0.82, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "power4.out" }, 2.55);
+      tl.fromTo("#co-ring", { opacity: 0.9, scale: 0.6 }, { opacity: 0, scale: 3.2, duration: 1.4, ease: "power2.out", immediateRender: false }, 2.75);
+      tl.fromTo("#co-rc", { strokeDashoffset: 264 }, { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut" }, 2.8);
+      tl.fromTo("#co-tk", { strokeDashoffset: 72 }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, 3.2);
+      tl.to("#co-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power4.in" }, 4.58);
+      window.__timelines["checkout"] = tl;
+    })();
+  </script>
+</template>

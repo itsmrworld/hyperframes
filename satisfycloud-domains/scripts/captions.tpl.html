@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Outfit", "Inter", sans-serif; }
+    .cap { --fs: 56px; --bot: 118px; position: absolute; left: 0; right: 0; bottom: var(--bot); text-align: center; padding: 0 200px; }
+    .ci { display: inline-block; font-weight: 500; font-size: var(--fs); letter-spacing: -.01em; line-height: 1.15; color: #fff; text-shadow: 0 2px 30px rgba(0,8,50,.65), 0 0 2px rgba(0,8,50,.4); }
+    .w { display: inline-block; opacity: .5; transform: translateY(6px); }
+    .lt .ci { color: #0B1220; text-shadow: 0 2px 24px rgba(255,255,255,.7); }
+    @container (max-aspect-ratio: 1.2) { .cap { --fs: 46px; --bot: 64px; padding: 0 70px; } }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1920" data-height="1080">
+      {{CAPS}}
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var D = {{DATA}};
+      D.forEach(function (c) {
+        tl.fromTo("#cap" + c.i + " .ci", { opacity: 0, y: 16, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, ease: "power3.out" }, c.s);
+        c.w.forEach(function (t, j) { tl.to("#cw" + c.i + "_" + j, { opacity: 1, y: 0, duration: 0.14, ease: "power2.out" }, c.s + t); });
+        tl.to("#cap" + c.i + " .ci", { opacity: 0, duration: 0.14, ease: "power2.in" }, c.s + c.d - 0.14);
+      });
+      window.__timelines["captions"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,87 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #eef2fb; }
+    #pr-stage { position: absolute; inset: 0; transform-origin: 50% 50%; --tl: 110px; --tt: 225px; --tw: 960px; --rh: 98px; --sl: 1150px; --st: 225px; --sw: 660px; --sh: 630px; }
+    #pr-eyebrow { position: absolute; left: 110px; top: 66px; font: 600 22px "JetBrains Mono", monospace; letter-spacing: .2em; color: #5b8cff; }
+    #pr-h { position: absolute; left: 110px; top: 100px; font: 700 56px/1.05 "Inter"; letter-spacing: -.03em; }
+    #pr-table { position: absolute; left: var(--tl); top: var(--tt); width: var(--tw); border-radius: 30px; padding: 22px; background: linear-gradient(160deg, rgba(22,28,46,.94), rgba(12,16,28,.94)); border: 1px solid rgba(255,255,255,.12); box-shadow: 0 50px 110px rgba(0,0,0,.55); opacity: 0; }
+    #pr-chips { display: flex; gap: 12px; margin: 0 0 14px 6px; font: 600 21px "Inter"; }
+    #pr-chips b { padding: 10px 22px; border-radius: 24px; background: rgba(255,255,255,.07); color: rgba(255,255,255,.65); }
+    #pr-chips b.on { background: #0B64F8; color: #fff; }
+    #pr-hd { display: grid; grid-template-columns: 1fr 1fr 170px; padding: 8px 26px; font: 600 18px "JetBrains Mono", monospace; letter-spacing: .16em; color: rgba(190,205,235,.6); }
+    .pr-row { position: relative; height: var(--rh); display: grid; grid-template-columns: 1fr 1fr 170px; align-items: center; padding: 0 26px; border-radius: 20px; border: 1px solid transparent; opacity: 0; }
+    .pr-row .ex { display: flex; align-items: center; gap: 14px; font: 700 40px "Inter"; letter-spacing: -.02em; }
+    .pr-row .bd { font: 600 17px "Inter"; padding: 6px 12px; border-radius: 14px; }
+    .pr-row .pop { background: rgba(11,100,248,.22); color: #8fb4ff; } .pr-row .sv { background: rgba(52,211,153,.14); color: #6ee7b7; }
+    .pr-row .pc { font: 700 40px "Inter"; letter-spacing: -.02em; } .pr-row .pc small { font: 500 18px "Inter"; color: rgba(190,205,235,.65); margin-left: 6px; }
+    .pr-row .go { justify-self: end; padding: 14px 30px; border-radius: 26px; background: #0B64F8; font: 600 22px "Inter"; color: #fff; }
+    .pr-row.hl { background: linear-gradient(90deg, rgba(11,100,248,.22), rgba(11,100,248,.06)); border-color: rgba(70,130,255,.7); box-shadow: 0 0 40px rgba(11,100,248,.35); }
+    #pr-spot { position: absolute; left: var(--sl); top: var(--st); width: var(--sw); height: var(--sh); border-radius: 34px; padding: 40px 44px; opacity: 0; overflow: hidden;
+      background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(24px);
+      box-shadow: inset 0 1.5px 0 rgba(255,255,255,.35), 0 50px 120px rgba(0,10,70,.6); }
+    .pr-p { position: absolute; left: 44px; right: 44px; top: 40px; opacity: 0; }
+    .pr-p .k { font: 600 20px "JetBrains Mono", monospace; letter-spacing: .18em; color: rgba(205,222,255,.85); }
+    .pr-p .dn { margin-top: 22px; font: 700 52px "Inter"; letter-spacing: -.03em; } .pr-p .dn em { font-style: normal; color: #5b8cff; }
+    .pr-p .big { margin-top: 28px; font: 700 190px/1 "Outfit"; letter-spacing: -.05em; background: linear-gradient(180deg, #fff, #9cc0ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .pr-p .big sup { font-size: 80px; vertical-align: top; position: relative; top: 22px; margin-right: 6px; }
+    .pr-p .un { margin-top: 6px; font: 500 30px "Inter"; color: rgba(205,222,255,.8); letter-spacing: .02em; }
+    .pr-p .tags { margin-top: 26px; display: flex; gap: 12px; } .pr-p .tags span { padding: 10px 18px; border-radius: 20px; font: 600 21px "Inter"; background: rgba(52,211,153,.14); color: #6ee7b7; } .pr-p .tags span.b { background: rgba(11,100,248,.25); color: #a9c6ff; }
+    #pr-art { position: absolute; right: 24px; bottom: 6px; width: 380px; height: 360px; opacity: 0; z-index: 0;
+      -webkit-mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); }
+    #pr-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @container (max-aspect-ratio: 1.2) {
+      #pr-stage { --tl: 60px; --tt: 420px; --tw: 960px; --rh: 78px; --sl: 60px; --st: 40px; --sw: 960px; --sh: 350px; }
+      #pr-eyebrow, #pr-h { display: none; } #pr-art { display: none; }
+      .pr-row .ex { font-size: 34px; } .pr-row .pc { font-size: 34px; } .pr-row .bd { font-size: 15px; padding: 5px 10px; } .pr-row .go { padding: 11px 24px; font-size: 20px; }
+      #pr-chips { margin-bottom: 8px; } #pr-table { padding: 16px; }
+      .pr-p { top: 30px; } .pr-p .dn { margin-top: 10px; font-size: 44px; } .pr-p .big { margin-top: 6px; font-size: 150px; } .pr-p .big sup { font-size: 64px; top: 16px; } .pr-p .un { font-size: 26px; } .pr-p .tags { position: absolute; right: 0; top: 150px; margin: 0; flex-direction: column; }
+    }
+  </style>
+  <div id="root" data-composition-id="prices" data-width="1920" data-height="1080">
+    <div id="pr-stage">
+      <div id="pr-eyebrow">DOMAIN PRICING</div><div id="pr-h">Every extension, priced in plain sight</div>
+      <div id="pr-art"><img src="assets/img/fig_profile.png" alt="" /></div>
+      <div id="pr-table">
+        <div id="pr-chips"><b>All</b><b class="on">Popular</b><b>Deals</b><b>Cheapest</b></div>
+        <div id="pr-hd"><span>EXTENSION</span><span>REGISTER</span><span></span></div>
+        <div class="pr-row" id="pr-a"><span class="ex">.shop <i class="bd pop">Popular</i><i class="bd sv">Save 97% year one</i></span><span class="pc">$1.12<small>USD /yr</small></span><span class="go">Search</span></div>
+        <div class="pr-row" id="pr-b"><span class="ex">.online <i class="bd pop">Popular</i><i class="bd sv">Save 92% year one</i></span><span class="pc">$1.46<small>USD /yr</small></span><span class="go">Search</span></div>
+        <div class="pr-row" id="pr-c"><span class="ex">.xyz <i class="bd pop">Popular</i><i class="bd sv">Save 85% year one</i></span><span class="pc">$2.55<small>USD /yr</small></span><span class="go">Search</span></div>
+        <div class="pr-row" id="pr-d"><span class="ex">.org <i class="bd pop">Popular</i><i class="bd sv">Save 41% year one</i></span><span class="pc">$8.49<small>USD /yr</small></span><span class="go">Search</span></div>
+        <div class="pr-row" id="pr-e"><span class="ex">.com <i class="bd pop">Popular</i></span><span class="pc">$11.26<small>USD /yr</small></span><span class="go">Search</span></div>
+      </div>
+      <div id="pr-spot">
+        <div class="pr-p" id="pp-a"><div class="k">YOUR NAME · AVAILABLE</div><div class="dn">yourbrand<em>.shop</em></div><div class="big"><sup>$</sup><span id="pv-a">0.00</span></div><div class="un">USD per year</div><div class="tags"><span>Save 97% year one</span></div></div>
+        <div class="pr-p" id="pp-b"><div class="k">YOUR NAME · AVAILABLE</div><div class="dn">yourbrand<em>.online</em></div><div class="big"><sup>$</sup><span id="pv-b">0.00</span></div><div class="un">USD per year</div><div class="tags"><span>Save 92% year one</span></div></div>
+        <div class="pr-p" id="pp-c"><div class="k">YOUR NAME · AVAILABLE</div><div class="dn">yourbrand<em>.xyz</em></div><div class="big"><sup>$</sup><span id="pv-c">0.00</span></div><div class="un">USD per year</div><div class="tags"><span>Save 85% year one</span></div></div>
+        <div class="pr-p" id="pp-d"><div class="k">YOUR NAME · AVAILABLE</div><div class="dn">yourbrand<em>.org</em></div><div class="big"><sup>$</sup><span id="pv-d">0.00</span></div><div class="un">USD per year</div><div class="tags"><span>Save 41% year one</span></div></div>
+        <div class="pr-p" id="pp-e"><div class="k">YOUR NAME · AVAILABLE</div><div class="dn">yourbrand<em>.com</em></div><div class="big"><sup>$</sup><span id="pv-e">0.00</span></div><div class="un">USD per year</div><div class="tags"><span class="b">The world's most trusted</span></div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var $ = function (s) { return document.querySelector(s); };
+      // local clock: scene starts 17.9 . cues: shop 0.0 · online 3.3 · xyz 5.9 · org 8.4 · com 11.1 . end 14.1
+      var K = [["a", 0.25, 1.12], ["b", 3.35, 1.46], ["c", 5.95, 2.55], ["d", 8.45, 8.49], ["e", 11.15, 11.26]];
+      tl.fromTo("#pr-stage", { scale: 0.8, opacity: 0, filter: "blur(14px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.42, ease: "power4.out" }, 0);
+      tl.fromTo(["#pr-eyebrow", "#pr-h"], { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.1 }, 0.05);
+      tl.fromTo("#pr-table", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.7, ease: "power4.out" }, 0.05);
+      tl.fromTo("#pr-spot", { opacity: 0, x: 70, scale: 0.94 }, { opacity: 1, x: 0, scale: 1, duration: 0.8, ease: "power4.out" }, 0.2);
+      tl.fromTo("#pr-art", { opacity: 0 }, { opacity: 0.85, duration: 1.4, ease: "power2.out" }, 0.6);
+      K.forEach(function (k, i) {
+        var id = k[0], t = k[1], price = k[2], row = "#pr-" + id;
+        tl.fromTo(row, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.3 + i * 0.1);
+        tl.to(row, { backgroundColor: "rgba(11,100,248,.2)", borderColor: "rgba(70,130,255,.75)", boxShadow: "0 0 40px rgba(11,100,248,.35)", duration: 0.25, ease: "power2.out" }, t);
+        if (i < 4) tl.to(row, { backgroundColor: "rgba(11,100,248,0)", borderColor: "rgba(70,130,255,0)", boxShadow: "0 0 0px rgba(11,100,248,0)", opacity: 0.5, duration: 0.3, ease: "power2.in" }, K[i + 1][1] - 0.05);
+        tl.fromTo("#pp-" + id, { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power3.out" }, t);
+        if (i < 4) tl.to("#pp-" + id, { opacity: 0, y: -22, filter: "blur(8px)", duration: 0.3, ease: "power2.in" }, K[i + 1][1] - 0.1);
+        var o = { v: 0 }, el = $("#pv-" + id);
+        tl.fromTo(o, { v: 0 }, { v: price, duration: 1.1, ease: "power3.out", immediateRender: false, onUpdate: function () { el.textContent = o.v.toFixed(2); } }, t + 0.15);
+      });
+      tl.to("#pr-stage", { scale: 1.4, opacity: 0, filter: "blur(14px)", duration: 0.32, ease: "power4.in" }, 13.78);
+      window.__timelines["prices"] = tl;
+    })();
+  </script>
+</template>

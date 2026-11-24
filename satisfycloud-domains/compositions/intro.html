@@ -1,0 +1,40 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; container-type: size; font-family: "Inter", sans-serif; color: #fff; }
+    #in-stage { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #in-glow { position: absolute; left: 50%; top: 58%; width: 1500px; height: 1500px; margin: -750px 0 0 -750px; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(11,100,248,.55), rgba(20,50,200,.18) 55%, rgba(11,100,248,0) 100%); opacity: 0; }
+    #in-fig { position: absolute; left: 50%; top: 50%; width: 760px; height: 1180px; margin: -560px 0 0 -380px; opacity: 0;
+      -webkit-mask-image: radial-gradient(closest-side, #000 45%, transparent 100%); mask-image: radial-gradient(closest-side, #000 45%, transparent 100%); }
+    #in-fig img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #in-bar { position: absolute; left: 50%; top: 50%; width: 900px; height: 96px; margin: -48px 0 0 -450px; border-radius: 48px; opacity: 0;
+      background: linear-gradient(150deg, rgba(255,255,255,.14), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(22px);
+      box-shadow: inset 0 1.5px 0 rgba(255,255,255,.35), 0 40px 100px rgba(2,8,60,.55); display: flex; align-items: center; padding: 0 36px; gap: 22px; overflow: hidden; }
+    #in-bar svg { width: 36px; height: 36px; opacity: .7; flex: none; }
+    #in-ph { font: 500 36px "Inter"; color: rgba(255,255,255,.45); }
+    #in-caret { width: 3px; height: 44px; background: #5b8cff; border-radius: 2px; margin-left: -14px; }
+    #in-go { margin-left: auto; width: 66px; height: 66px; border-radius: 50%; background: #0B64F8; display: grid; place-items: center; box-shadow: 0 0 34px rgba(11,100,248,.8); }
+    #in-sweep { position: absolute; top: 0; bottom: 0; width: 260px; left: -300px; background: linear-gradient(90deg, rgba(120,170,255,0), rgba(160,200,255,.45), rgba(120,170,255,0)); }
+    @container (max-aspect-ratio: 1.2) { #in-fig { width: 600px; height: 960px; margin: -520px 0 0 -300px; } #in-bar { width: 860px; margin-left: -430px; } #in-ph { font-size: 32px; } }
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1920" data-height="1080">
+    <div id="in-stage">
+      <div id="in-glow"></div>
+      <div id="in-fig"><img src="assets/img/fig_head.png" alt="" /></div>
+      <div id="in-bar"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span id="in-ph">Type a name you have in mind...</span><i id="in-caret"></i><span id="in-go"><svg viewBox="0 0 24 24" style="width:30px;height:30px;opacity:1" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span><i id="in-sweep"></i></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      // 0 - 4.5 s: animation alone, no voice. Light rises, a figure forms in it, an empty search bar waits.
+      tl.fromTo("#in-glow", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 4.2, ease: "power2.out" }, 0.1);
+      tl.fromTo("#in-fig", { opacity: 0, scale: 0.88, filter: "blur(18px)" }, { opacity: 0.95, scale: 1, filter: "blur(0px)", duration: 2.6, ease: "power3.out" }, 0.9);
+      tl.to("#in-fig", { scale: 1.1, duration: 6.1, ease: "none" }, 3.5);
+      tl.fromTo("#in-bar", { opacity: 0, y: 50, scale: 0.92 }, { opacity: 1, y: 140, scale: 1, duration: 1.3, ease: "power4.out" }, 2.6);
+      tl.fromTo("#in-sweep", { x: 0 }, { x: 1250, duration: 1.4, ease: "power2.inOut" }, 3.6);
+      tl.to("#in-stage", { scale: 1.45, opacity: 0, filter: "blur(16px)", duration: 0.34, ease: "power4.in" }, 6.66);
+      window.__timelines["intro"] = tl;
+    })();
+  </script>
+</template>

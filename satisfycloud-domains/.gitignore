@@ -1,0 +1,5 @@
+assets/audio/*.wav
+assets/audio/voice*
+renders/
+.hyperframes/
+!compositions/
