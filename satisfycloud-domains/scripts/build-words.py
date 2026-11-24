@@ -3,7 +3,7 @@
 import json, re
 segs = [
  (4.5, 7.0, "Every story begins with a name."),
- (7.6, 12.6, "A late night. A blank screen. One idea you can't let go."),
+ (7.6, 12.6, "Before the website. Before the first customer, there was a name."),
  (13.1, 14.4, "So you search."),
  (14.9, 17.4, "And your name appears. Live."),
  (17.9, 21.0, "Dot shop, one dollar twelve a year."),

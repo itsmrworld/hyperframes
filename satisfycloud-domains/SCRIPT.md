@@ -4,17 +4,15 @@ The film opens with ~4.5 s of animation and **no voice**. Generate the voice fro
 starts it at 4.5 s. All prices are USD and come from satisfycloud.com/domain (Popular tab, Register column).
 
 ```text
-[softly] Every story begins with a name.
+[softly] Before the logo. Before the website. Before the first customer, [pause] there was a name.
 
-[pause] [focused] A late night. A blank screen. One idea you can't let go.
-
-[confident] So you search. [pause] And your name appears. Live.
+[focused] Now it's your turn. [pause] Type it in. See it appear. Live.
 
 [excited] Dot shop, one dollar twelve a year. Dot online, one forty-six. Dot xyz, two fifty-five.
 
 [confident] Dot org, eight forty-nine. Dot com, eleven twenty-six.
 
-[focused] Add to cart. Pay. [pause] The name is yours.
+[focused] Add to cart. Pay. [pause] And just like that, the name is yours.
 
 [warm] Then give it a home, and go live the same day.
 

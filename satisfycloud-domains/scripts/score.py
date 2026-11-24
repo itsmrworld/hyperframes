@@ -109,63 +109,94 @@ def sparkle(t0, t1, density, amp, scale):
         f = hz(scale[rng.integers(len(scale))]) * 2 ** rng.integers(0, 2); tt0 = rng.uniform(t0, t1)
         pluck(f, tt0, amp * rng.uniform(0.4, 1), pan=rng.uniform(-0.9, 0.9), dec=rng.uniform(0.5, 1.4), send=1.2)
 
-# ---------------------------------------------------------------- score (SatisfyCloud domains, 50 s)
-D = {"a": ["D3", "A3", "F#4", "A4", "E5"], "b": ["B2", "F#3", "D4", "A4", "C#5"], "c": ["G2", "D3", "B3", "D4", "F#4", "A4"], "d": ["A2", "E3", "C#4", "E4", "G4"], "e": ["D3", "A3", "D4", "F#4", "A4", "E5"]}
-F = lambda names: [hz(n) for n in names]
-CH = {"a": ["D4", "F#4", "A4", "C#5", "E5", "A5"], "b": ["B3", "D4", "F#4", "A4", "C#5", "F#5"], "c": ["G3", "B3", "D4", "F#4", "B4", "D5"], "d": ["A3", "C#4", "E4", "G4", "E5", "A5"], "e": ["D4", "F#4", "A4", "C#5", "E5", "A5"]}
-# 0 - 7 : light rises in silence (no voice): sub bed, a pad that opens, one bar of air
-sd = (np.sin(2 * np.pi * hz("D1") * t) + 0.5 * np.sin(2 * np.pi * hz("D2") * t + 0.3) + 0.2 * np.sin(2 * np.pi * hz("A2") * t)) * env([(0, 0), (3.0, 0.07), (12.5, 0.09), (13.5, 0.0)])
+
+def kick(t0, amp=0.5):
+    n = int(0.5 * SR); tt = np.arange(n) / SR; fr = 46 + 90 * np.exp(-tt / 0.045)
+    x = np.sin(2 * np.pi * np.cumsum(fr) / SR) * np.exp(-tt / 0.18) + 0.3 * np.sin(2 * np.pi * np.cumsum(fr * 2) / SR) * np.exp(-tt / 0.05)
+    x += rng.standard_normal(n) * np.exp(-tt / 0.004) * 0.25; place(fx, (x * amp).astype(np.float32), t0)
+def hat(t0, amp=0.05, pan=0.3, open_=False):
+    n = int((0.22 if open_ else 0.06) * SR); tt = np.arange(n) / SR
+    x = bandnoise(n / SR, 7000, 11000, 0.45, int(t0 * 100) % 997)[:n] * np.exp(-tt / (0.09 if open_ else 0.018)); place(fx, (x * amp).astype(np.float32), t0, pan)
+def bass(f, t0, dur=0.55, amp=0.28):
+    n = int(dur * SR); tt = np.arange(n) / SR
+    x = (np.sin(2 * np.pi * f * tt) + 0.45 * np.sin(2 * np.pi * 2 * f * tt) * np.exp(-tt / 0.12)) * np.exp(-tt / (dur * 0.55)) * np.minimum(1, tt / 0.006)
+    place(music, (x * amp).astype(np.float32), t0)
+def stab(notes, t0, amp=0.07, dec=0.45, pan=0.0):
+    n = int(dec * 4 * SR); tt = np.arange(n) / SR; x = np.zeros(n)
+    for i, f in enumerate(notes):
+        for k, a in [(1, 1.0), (2, 0.42), (3, 0.16)]: x += a * np.sin(2 * np.pi * f * k * tt + i)
+    x = x * np.exp(-tt / dec) * np.minimum(1, tt / 0.004) / len(notes); x = (x * amp * 3).astype(np.float32)
+    place(music, x, t0, pan); place(revsend, x * 0.7, t0, pan)
+def swell(t0, dur, f0, f1, amp):
+    x = bandnoise(dur, f0, f1, 0.9, int(t0 * 31) % 991) * (np.linspace(0, 1, int(dur * SR)) ** 2.0).astype(np.float32) * amp
+    place(fx, x, t0); place(revsend, x * 0.5, t0)
+# ---------------------------------------------------------------- score v2 (domains ad): C minor world, groove in the middle, quiet ending
+# (different identity from the promo film: no Shepard tone, no sustained high partials, no finale pluck cluster)
+CH = {"cm": ["C3", "G3", "Bb3", "D4", "Eb4"], "ab": ["Ab2", "Eb3", "G3", "C4", "Eb4"], "eb": ["Eb3", "Bb3", "D4", "G4"], "bb": ["Bb2", "F3", "Bb3", "D4", "F4"]}
+FR = lambda k: [hz(n) for n in CH[k]]
+ROOT = {"cm": "C2", "ab": "Ab1", "eb": "Eb2", "bb": "Bb1"}
+BEAT = 0.6
+# 0 - 7: slow dark swell, low and warm. nothing thin, nothing high.
+sd = (np.sin(2 * np.pi * hz("C1") * t) + 0.6 * np.sin(2 * np.pi * hz("C2") * t) + 0.25 * np.sin(2 * np.pi * hz("G2") * t)) * env([(0, 0), (3.0, 0.07), (12.0, 0.08), (13.0, 0.0)])
 music[0] += sd; music[1] += sd
-pad(F(D["a"]), 0.2, 12.8, 3.8, 1.2, 0.34, bright=(0.25, 1.0), seed=1)
-pad(F(["D5", "A5", "E6"]), 1.5, 12.8, 4.0, 1.2, 0.09, bright=(0.3, 0.9), K=6, seed=2)
-whoosh(2.4, 1.5, 300, 2400, 0.12, -0.3, 0.3, 11); sparkle(3.4, 6.6, 1.6, 0.04, ["D5", "F#5", "A5", "E5"])
-whoosh(6.45, 0.5, 500, 5000, 0.26, -0.4, 0.4, 12)
-# 7 - 12.6 : story, slower and warmer; three notes, one per beat of the story
-pad(F(D["b"]), 6.8, 13.0, 1.4, 1.4, 0.32, bright=(0.5, 0.95), seed=5)
-for tn, nt in [(7.65, "F#4"), (9.3, "A4"), (10.9, "D5")]: pluck(hz(nt), tn, 0.12, 0.1, 1.6, 1.2)
-pop(10.9, 780, 0.08, 0.0); whoosh(10.8, 1.2, 600, 4200, 0.12, -0.2, 0.2, 13)
-whoosh(12.35, 0.55, 500, 5200, 0.26, -0.4, 0.4, 14)
-# 12.6 - 17.9 : the search. click, dive, type, results
-click(13.98, 0.2); whoosh(14.05, 0.9, 400, 3400, 0.16, -0.3, 0.5, 15); boom(14.9, 0.35, 1.6, 52)
-for i in range(9): tick(15.0 + i * 0.094, 2300 + rng.integers(-250, 250), 0.07, -0.1 + 0.025 * i, 0.02, 0.25)
-pop(15.8, 880, 0.09, 0.0)
-for i, tc in enumerate([16.15, 16.3, 16.45]): pop(tc, 980 + 150 * i, 0.09, -0.3 + 0.3 * i)
-# 17.9 - 32 : prices. chords turn with the story, a soft pulse of plucks, a rising tone underneath
-shepard(17.0, 36.0, 0.18, 1 / 12)
-prog = [(12.8, 24.0, "c"), (24.0, 28.5, "d"), (28.5, 33.0, "e"), (33.0, 41.4, "e")]
-pad(F(D["c"]), 12.6, 24.8, 1.6, 2.2, 0.36, bright=(0.7, 1.0), K=8, seed=20)
-pad(F(D["d"]), 24.0, 29.6, 1.6, 2.0, 0.34, bright=(0.8, 1.0), K=8, seed=21)
-pad(F(D["e"]), 28.8, 41.6, 1.8, 1.6, 0.38, bright=(0.8, 1.0), K=8, seed=22)
-step = 60 / 104 / 2; pat = [0, 2, 4, 5, 4, 3, 1, 3]; ti = 17.95; k = 0
-while ti < 41.3:
-    ch = CH["c"] if ti < 24.0 else CH["d"] if ti < 28.5 else CH["e"]
-    if k % 8 in (0, 2, 3, 5, 6, 7): pluck(hz(ch[pat[k % 8] % len(ch)]), ti, 0.07, pan=((k % 4) - 1.5) / 2.2, dec=0.75)
-    ti += step; k += 1
-for i, (tc, f) in enumerate([(18.15, 784), (21.25, 880), (23.85, 988), (26.35, 1175), (29.05, 1319)]):
-    pop(tc, f, 0.12, -0.4 + 0.2 * i); pluck(hz("D6") if i % 2 == 0 else hz("A5"), tc + 0.05, 0.05, 0.3, 1.2, 1.2)
-    for j in range(7): tick(tc + 0.18 + j * 0.13, 2600 + 90 * j, 0.03, 0.0, 0.012, 0.3)    # price counting up
-whoosh(31.8, 0.5, 500, 5200, 0.26, -0.4, 0.4, 31)
-# 32 - 36.9 : add to cart, pay, the name is yours
-click(32.62, 0.2); pop(32.75, 1180, 0.12, 0.3); click(33.5, 0.2); pop(33.62, 1320, 0.12, -0.2); pop(32.92, 1000, 0.07, 0.4)
-whoosh(34.2, 0.45, 8000, 600, 0.14, 0.3, -0.3, 32)
-boom(34.55, 0.55, 3.0, 40)
-for i, f in enumerate(["D5", "F#5", "A5", "C#6"]): pluck(hz(f), 34.6 + i * 0.1, 0.10 - 0.012 * i, -0.4 + 0.27 * i, 2.0, 1.5)
-tick(35.2, 1800, 0.1, 0.0, 0.05); sparkle(34.8, 36.2, 5, 0.04, ["D6", "A5", "F#5", "E6"])
-whoosh(36.6, 0.45, 500, 5200, 0.26, -0.4, 0.4, 33)
-# 36.9 - 41.2 : hosting, the site comes alive
+pad(FR("cm"), 0.3, 13.2, 3.6, 1.6, 0.42, bright=(0.15, 0.55), K=4, seed=61)
+swell(0.8, 3.6, 200, 1800, 0.10); swell(3.8, 2.8, 400, 3200, 0.12)
+whoosh(2.5, 1.4, 250, 2000, 0.10, -0.3, 0.3, 61)
+whoosh(6.45, 0.5, 500, 4500, 0.24, -0.4, 0.4, 62)
+# 7 - 12.6: three things that do not exist yet (low wooden knocks), then the name (warm chord)
+for tn, nt in [(7.6, "G3"), (9.0, "Bb3"), (10.6, "D4")]: pluck(hz(nt), tn, 0.12, 0.0, 1.4, 1.0); kick(tn, 0.22)
+pad(FR("ab"), 11.3, 15.0, 0.6, 1.2, 0.34, bright=(0.3, 0.7), K=4, seed=63)
+stab([hz("Ab3"), hz("Eb4"), hz("G4"), hz("C5")], 11.9, 0.09, 1.2)
+whoosh(12.35, 0.55, 500, 4500, 0.24, -0.4, 0.4, 64)
+# 12.6 - 17.9: the search. pulse of low thumps, rising as the name is typed
+click(13.98, 0.2); whoosh(14.05, 0.9, 400, 3000, 0.16, -0.3, 0.5, 65)
+for i in range(8): kick(14.2 + i * BEAT * 0.8, 0.12 + 0.03 * i)
+for i in range(9): tick(15.0 + i * 0.094, 2000 + rng.integers(-300, 300), 0.07, -0.1 + 0.025 * i, 0.02, 0.25)
+pop(15.8, 740, 0.09, 0.0)
+for i, tc in enumerate([16.15, 16.3, 16.45]): pop(tc, 740 + 110 * (i + 1), 0.08, -0.3 + 0.3 * i)
+swell(16.6, 1.3, 300, 6500, 0.2)
+# 17.9 - 32: prices. a real groove: kick, offbeat hats, bass, chord stabs, a sparse melody on the price cues
+GROOVE = [(17.9, 22.4, "cm"), (22.4, 26.8, "ab"), (26.8, 31.2, "eb"), (31.2, 32.0, "bb")]
+pad(FR("cm"), 17.4, 23.0, 1.2, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=70)
+pad(FR("ab"), 22.2, 27.4, 1.2, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=71)
+pad(FR("eb"), 26.6, 31.8, 1.2, 1.4, 0.26, bright=(0.3, 0.6), K=4, seed=72)
+tb = 17.9; k = 0
+while tb < 31.9:
+    g = [x for x in GROOVE if x[0] <= tb < x[1]][0][2]; r = hz(ROOT[g])
+    kick(tb, 0.34 if k % 4 == 0 else 0.30)
+    hat(tb + BEAT / 2, 0.05, 0.4 if k % 2 else -0.4, open_=(k % 4 == 3))
+    if k % 4 in (0, 2): bass(r, tb, 0.5)
+    if k % 4 == 2: bass(r * 2 ** (7 / 12), tb + BEAT * 0.75, 0.3, 0.2)
+    if k % 4 in (1, 3): stab([hz(n) for n in CH[g][1:4]], tb + BEAT / 2, 0.06, 0.3, 0.3 if k % 2 else -0.3)
+    tb += BEAT; k += 1
+for i, (tc, nt) in enumerate([(18.15, "G5"), (21.25, "Bb5"), (23.85, "C6"), (26.35, "D6"), (29.05, "G6")]):
+    pop(tc, hz(nt) * 0.5, 0.10, -0.4 + 0.2 * i); pluck(hz(nt), tc + 0.04, 0.07, 0.3, 0.9, 1.0)
+    for j in range(5): tick(tc + 0.2 + j * 0.16, 2000 + 140 * j, 0.03, 0.0, 0.012, 0.3)
+swell(31.0, 0.9, 300, 7000, 0.22); whoosh(31.8, 0.5, 500, 4500, 0.24, -0.4, 0.4, 66)
+# 32 - 36.9: the groove drops out; two clicks; a held beat; a warm chord when the name is his
+click(32.62, 0.2); pop(32.75, 940, 0.12, 0.3); click(33.5, 0.2); pop(33.62, 1100, 0.12, -0.2)
+whoosh(34.2, 0.45, 7000, 500, 0.14, 0.3, -0.3, 67)
+kick(34.55, 0.5); pad(FR("eb"), 34.5, 38.5, 0.3, 1.6, 0.42, bright=(0.5, 0.8), K=4, seed=73)
+stab([hz(n) for n in ["Eb4", "G4", "Bb4", "D5"]], 34.6, 0.10, 1.6)
+for i, nt in enumerate(["G5", "Bb5", "D6"]): pluck(hz(nt), 34.9 + i * 0.16, 0.07, -0.3 + 0.3 * i, 1.4, 1.1)
+tick(35.2, 1500, 0.10, 0.0, 0.05)
+whoosh(36.6, 0.45, 500, 4500, 0.24, -0.4, 0.4, 68)
+# 36.9 - 41.2: groove returns lighter; the site comes alive: a rising run, then a lift
 click(38.22, 0.2)
-for i in range(6): pop(38.35 + i * 0.22, 700 + 70 * i, 0.06, -0.5 + 0.2 * i)
-pop(39.9, 1250, 0.12, 0.0); pluck(hz("A5"), 39.9, 0.10, 0.0, 1.8, 1.4); pluck(hz("E6"), 39.98, 0.06, 0.3, 1.8, 1.4)
-x = bandnoise(1.2, 300, 8000, 0.9, 41) * np.linspace(0, 1, int(1.2 * SR)).astype(np.float32) ** 2.2 * 0.26; place(fx, x, 39.7); place(revsend, x * 0.5, 39.7)
-whoosh(40.95, 0.45, 500, 5200, 0.26, -0.4, 0.4, 34)
-# 41.2 - 50 : brand end card
-boom(41.4, 0.7, 3.4, 38); pluck(hz("D5"), 41.4, 0.16, -0.2, 1.8, 1.4); pluck(hz("A5"), 41.48, 0.10, 0.2, 1.8, 1.4); pluck(hz("F#5"), 41.6, 0.08, 0.0, 1.8, 1.4)
-sparkle(41.5, 44.0, 3, 0.05, ["D5", "F#5", "A5", "C#6", "E5"])
-for i in range(6): tick(42.8 + i * 0.36, 2000 + 120 * i, 0.04, -0.4 + 0.16 * i, 0.02, 0.3)
-for i in range(16): tick(46.15 + i * 0.07, 2300 + rng.integers(-200, 200), 0.05, 0.0, 0.02, 0.3)
-click(47.6, 0.2); boom(47.6, 0.6, 3.2, 42)
-for i, f in enumerate(["D5", "F#5", "A5", "C#6", "E6"]): pluck(hz(f), 47.65 + i * 0.09, 0.09 - 0.01 * i, -0.5 + 0.25 * i, 2.4, 1.6)
-sparkle(47.7, 49.0, 5, 0.04, ["D6", "A5", "F#5", "E6"])
+for i in range(6): pop(38.35 + i * 0.22, 600 + 60 * i, 0.06, -0.5 + 0.2 * i)
+for i in range(8): kick(37.2 + i * BEAT * 1.0, 0.18); hat(37.5 + i * BEAT, 0.04, 0.3)
+bass(hz("Bb1"), 37.2, 0.5); bass(hz("Eb2"), 38.4, 0.5); bass(hz("Bb1"), 39.6, 0.5)
+for i, nt in enumerate(["Eb5", "G5", "Bb5", "D6", "Eb6"]): pluck(hz(nt), 39.75 + i * 0.07, 0.07, -0.3 + 0.15 * i, 1.1, 1.1)
+swell(39.4, 0.7, 300, 7000, 0.20); pop(39.9, 1050, 0.12, 0.0)
+whoosh(40.95, 0.45, 500, 4500, 0.24, -0.4, 0.4, 69)
+# 41.2 - 50: brand end card. a different ending: the groove stops, one warm chord and a soft mallet motif, then a clean fade (no boom, no sparkle cluster)
+pad(FR("cm"), 41.0, 50.0, 1.2, 2.6, 0.40, bright=(0.4, 0.8), K=5, seed=80)
+stab([hz(n) for n in ["C4", "Eb4", "G4", "Bb4"]], 41.3, 0.12, 2.2); bass(hz("C2"), 41.3, 2.0, 0.3)
+for i, nt in enumerate(["Bb4", "Eb5", "G5", "Bb5"]): pluck(hz(nt), 42.2 + i * 0.5, 0.08, -0.3 + 0.2 * i, 1.6, 1.2)
+for i in range(6): tick(42.8 + i * 0.36, 1700 + 100 * i, 0.04, -0.4 + 0.16 * i, 0.02, 0.3)
+for i in range(16): tick(46.15 + i * 0.07, 2000 + rng.integers(-200, 200), 0.05, 0.0, 0.02, 0.3)
+click(47.6, 0.2); stab([hz(n) for n in ["C4", "G4", "Bb4", "D5", "Eb5"]], 47.62, 0.12, 2.6); bass(hz("C2"), 47.62, 2.4, 0.3)
+for i, nt in enumerate(["G5", "Bb5", "D6", "Eb6"]): pluck(hz(nt), 47.9 + i * 0.22, 0.06 - 0.01 * i, -0.3 + 0.2 * i, 2.0, 1.3)
 
 # ---------------------------------------------------------------- reverb (long, dark, stereo-decorrelated)
 def make_ir(T60=4.2, pre=0.03, lp=5200, seed=5):
